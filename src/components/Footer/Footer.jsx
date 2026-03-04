@@ -63,8 +63,9 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="footer-brand">
             <a href="#" className="footer-logo">
-              <span className="logo-text">AIoT</span>
-              <span className="logo-accent">Society</span>
+              <img src="/logo.jpeg" alt="YORK AIoT" className="footer-logo-image" />
+              <span className="logo-text">YORK</span>
+              <span className="logo-accent">AIoT</span>
             </a>
             <p className="footer-tagline">
               Connecting intelligence to the world through AI and IoT innovation.
@@ -134,10 +135,10 @@ const Footer = () => {
 
         <div className="footer-bottom">
           <p className="footer-copyright">
-            © {currentYear} AIoT Society. All rights reserved.
+            © {currentYear} YORK AIoT. All rights reserved.
           </p>
           <p className="footer-credit">
-            Built with ❤️ by AIoT Society
+            Built with ❤️ by YORK AIoT
           </p>
         </div>
       </div>

@@ -64,8 +64,9 @@ const Navbar = () => {
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="navbar-container">
         <a href="#" className="navbar-logo">
-          <span className="logo-text">AIoT</span>
-          <span className="logo-accent">Society</span>
+          <img src="/logo.jpeg" alt="YORK AIoT" className="logo-image" />
+          <span className="logo-text">YORK</span>
+          <span className="logo-accent">AIoT</span>
         </a>
 
         <div className={`navbar-links ${isMobileMenuOpen ? 'open' : ''}`}>

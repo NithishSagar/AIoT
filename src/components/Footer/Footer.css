@@ -31,6 +31,30 @@
   width: auto;
 }
 
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  margin-bottom: 20px;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.footer-logo-image {
+  height: 40px;
+  width: auto;
+}
+
+.footer-logo .logo-text {
+  color: #FFFFFF;
+}
+
+.footer-logo .logo-accent {
+  color: var(--color-accent);
+}
+
 .footer-brand .logo-fallback {
   font-family: var(--font-display);
   font-size: 1.5rem;

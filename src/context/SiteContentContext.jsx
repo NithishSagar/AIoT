@@ -92,8 +92,8 @@ const defaultContent = {
       { platform: 'Twitter', url: 'https://twitter.com' },
       { platform: 'Discord', url: 'https://discord.com' }
     ],
-    copyright: '© 2026 AIoT Society. All rights reserved.',
-    credit: 'Built with ❤️ by AIoT Society'
+    copyright: '© 2026 YORK AIoT. All rights reserved.',
+    credit: 'Built with ❤️ by YORK AIoT'
   }
 };
 
