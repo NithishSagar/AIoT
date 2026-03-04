@@ -1,6 +1,6 @@
 .footer {
   background: rgba(5, 10, 20, 0.95);
-  border-top: 1px solid rgba(0, 245, 212, 0.1);
+  border-top: 1px solid rgba(0, 168, 150, 0.1);
   padding-top: 80px;
 }
 
@@ -62,7 +62,7 @@
 
 .social-link:hover {
   color: var(--color-cyan);
-  border-color: rgba(0, 245, 212, 0.3);
+  border-color: rgba(0, 168, 150, 0.3);
   box-shadow: var(--glow-cyan);
   transform: translateY(-2px);
 }

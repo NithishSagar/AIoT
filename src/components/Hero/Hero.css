@@ -14,6 +14,12 @@
   width: 100%;
   height: 100%;
   z-index: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.hero-canvas.visible {
+  opacity: 1;
 }
 
 .hero-content {
@@ -50,6 +56,14 @@
   max-width: 700px;
   margin: 0 auto 40px;
   line-height: 1.8;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.hero-subtitle.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .hero-buttons {
@@ -57,6 +71,14 @@
   gap: 20px;
   justify-content: center;
   flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out 0.2s, transform 0.8s ease-out 0.2s;
+}
+
+.hero-buttons.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .btn {
@@ -79,7 +101,7 @@
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 30px rgba(0, 245, 212, 0.6), 0 0 60px rgba(0, 245, 212, 0.3);
+  box-shadow: 0 0 30px rgba(0, 168, 150, 0.6), 0 0 60px rgba(0, 168, 150, 0.3);
 }
 
 .btn-ghost {
@@ -89,7 +111,7 @@
 }
 
 .btn-ghost:hover {
-  background: rgba(0, 245, 212, 0.1);
+  background: rgba(0, 168, 150, 0.1);
   transform: translateY(-2px);
   box-shadow: var(--glow-cyan);
 }
@@ -103,6 +125,12 @@
   height: 100%;
   pointer-events: none;
   z-index: 1;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.hero-floating-icons.visible {
+  opacity: 1;
 }
 
 .floating-icon {
@@ -158,6 +186,12 @@
   transform: translateX(-50%);
   text-align: center;
   z-index: 2;
+  opacity: 0;
+  transition: opacity 0.8s ease-out 0.4s;
+}
+
+.hero-scroll-indicator.visible {
+  opacity: 1;
 }
 
 .hero-scroll-indicator span {
@@ -176,7 +210,7 @@
   border-bottom: 2px solid var(--color-cyan);
   transform: rotate(45deg);
   animation: float 2s ease-in-out infinite;
-  box-shadow: 2px 2px 8px rgba(0, 245, 212, 0.4);
+  box-shadow: 2px 2px 8px rgba(0, 168, 150, 0.4);
 }
 
 @media (max-width: 768px) {

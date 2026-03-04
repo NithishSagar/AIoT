@@ -1,15 +1,15 @@
 :root {
-  --color-bg:         #050A14;
-  --color-bg-card:    rgba(255, 255, 255, 0.04);
-  --color-cyan:       #00F5D4;
-  --color-violet:     #7B2FFF;
-  --color-text:       #E8EDF5;
-  --color-text-muted: #7A8899;
+  --color-bg:         #F8F6F3;
+  --color-bg-card:    rgba(0, 0, 0, 0.04);
+  --color-cyan:       #00A896;
+  --color-violet:     #6B21A8;
+  --color-text:       #1A1A2E;
+  --color-text-muted: #5A6675;
   --font-display:     'Orbitron', sans-serif;
   --font-body:        'Sora', sans-serif;
-  --glow-cyan:        0 0 20px rgba(0, 245, 212, 0.4);
-  --glow-violet:      0 0 20px rgba(123, 47, 255, 0.4);
-  --border-glass:     1px solid rgba(0, 245, 212, 0.15);
+  --glow-cyan:        0 0 20px rgba(0, 168, 150, 0.3);
+  --glow-violet:      0 0 20px rgba(107, 33, 168, 0.3);
+  --border-glass:     1px solid rgba(0, 168, 150, 0.2);
   --radius-card:      16px;
   --transition-base:  all 0.3s ease;
 }

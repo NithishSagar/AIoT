@@ -35,12 +35,12 @@
 }
 
 .admin-content::-webkit-scrollbar-thumb {
-  background: rgba(0, 245, 212, 0.2);
+  background: rgba(0, 168, 150, 0.2);
   border-radius: 4px;
 }
 
 .admin-content::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 245, 212, 0.3);
+  background: rgba(0, 168, 150, 0.3);
 }
 
 /* Responsive */

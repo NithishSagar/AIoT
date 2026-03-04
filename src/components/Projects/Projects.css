@@ -2,7 +2,7 @@
   background: linear-gradient(
     180deg,
     var(--color-bg) 0%,
-    rgba(123, 47, 255, 0.03) 100%
+    rgba(107, 33, 168, 0.03) 100%
   );
 }
 
@@ -40,7 +40,7 @@
 
 .project-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(123, 47, 255, 0.3);
+  border-color: rgba(107, 33, 168, 0.3);
   box-shadow: var(--glow-violet);
 }
 
@@ -63,21 +63,21 @@
 }
 
 .category-ai {
-  background: rgba(123, 47, 255, 0.15);
+  background: rgba(107, 33, 168, 0.15);
   color: var(--color-violet);
-  border: 1px solid rgba(123, 47, 255, 0.3);
+  border: 1px solid rgba(107, 33, 168, 0.3);
 }
 
 .category-iot {
-  background: rgba(0, 245, 212, 0.15);
+  background: rgba(0, 168, 150, 0.15);
   color: var(--color-cyan);
-  border: 1px solid rgba(0, 245, 212, 0.3);
+  border: 1px solid rgba(0, 168, 150, 0.3);
 }
 
 .category-aiot {
-  background: linear-gradient(135deg, rgba(0, 245, 212, 0.15), rgba(123, 47, 255, 0.15));
+  background: linear-gradient(135deg, rgba(0, 168, 150, 0.15), rgba(107, 33, 168, 0.15));
   color: var(--color-text);
-  border: 1px solid rgba(0, 245, 212, 0.3);
+  border: 1px solid rgba(0, 168, 150, 0.3);
 }
 
 .project-title {

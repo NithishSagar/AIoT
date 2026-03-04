@@ -47,10 +47,10 @@
 /* Pulse Glow Animation */
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(0, 245, 212, 0.4);
+    box-shadow: 0 0 20px rgba(0, 168, 150, 0.4);
   }
   50% {
-    box-shadow: 0 0 40px rgba(0, 245, 212, 0.8), 0 0 60px rgba(0, 245, 212, 0.4);
+    box-shadow: 0 0 40px rgba(0, 168, 150, 0.8), 0 0 60px rgba(0, 168, 150, 0.4);
   }
 }
 

@@ -20,7 +20,7 @@
 
 .blog-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(0, 245, 212, 0.3);
+  border-color: rgba(0, 168, 150, 0.3);
   box-shadow: var(--glow-cyan);
 }
 
@@ -59,12 +59,12 @@
 }
 
 .category-iot {
-  background: rgba(0, 245, 212, 0.9);
+  background: rgba(0, 168, 150, 0.9);
   color: var(--color-bg);
 }
 
 .category-aiot {
-  background: linear-gradient(135deg, rgba(0, 245, 212, 0.9), rgba(123, 47, 255, 0.9));
+  background: linear-gradient(135deg, rgba(0, 168, 150, 0.9), rgba(123, 47, 255, 0.9));
   color: #fff;
 }
 

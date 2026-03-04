@@ -34,8 +34,8 @@ body::after {
     0deg,
     transparent,
     transparent 2px,
-    rgba(0, 245, 212, 0.03) 2px,
-    rgba(0, 245, 212, 0.03) 4px
+    rgba(0, 168, 150, 0.03) 2px,
+    rgba(0, 168, 150, 0.03) 4px
   );
 }
 
@@ -98,7 +98,7 @@ img {
   border-radius: 50%;
   pointer-events: none;
   z-index: 10000;
-  box-shadow: var(--glow-cyan), 0 0 40px rgba(0, 245, 212, 0.6);
+  box-shadow: var(--glow-cyan), 0 0 40px rgba(0, 168, 150, 0.6);
   transform: translate(-50%, -50%);
   transition: transform 0.1s ease, opacity 0.3s ease;
   opacity: 0;

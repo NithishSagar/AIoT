@@ -6,12 +6,15 @@ const Hero = () => {
   const heroRef = useRef(null);
   const floatingIconRefs = useRef([]);
   const [displayText, setDisplayText] = useState('');
+  const [typingComplete, setTypingComplete] = useState(false);
+  const [showBackground, setShowBackground] = useState(false);
+  const [showContent, setShowContent] = useState(false);
   const fullText = 'Connecting Intelligence to the World';
 
   // Store original positions for each icon
   const originalPositions = useRef([]);
 
-  // Typewriter effect
+  // Typewriter effect with animation sequence
   useEffect(() => {
     let index = 0;
     const timer = setInterval(() => {
@@ -20,6 +23,15 @@ const Hero = () => {
         index++;
       } else {
         clearInterval(timer);
+        setTypingComplete(true);
+        // After typing completes, show background
+        setTimeout(() => {
+          setShowBackground(true);
+          // Then show content from below
+          setTimeout(() => {
+            setShowContent(true);
+          }, 600);
+        }, 300);
       }
     }, 50);
 
@@ -163,9 +175,9 @@ const Hero = () => {
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(0, 245, 212, 0.6)';
+        ctx.fillStyle = 'rgba(0, 168, 150, 0.6)';
         ctx.fill();
-        ctx.shadowColor = '#00F5D4';
+        ctx.shadowColor = '#00A896';
         ctx.shadowBlur = 10;
       }
     }
@@ -190,7 +202,7 @@ const Hero = () => {
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
             const opacity = (1 - distance / 150) * 0.3;
-            ctx.strokeStyle = `rgba(0, 245, 212, ${opacity})`;
+            ctx.strokeStyle = `rgba(0, 168, 150, ${opacity})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -221,9 +233,9 @@ const Hero = () => {
 
   return (
     <section className="hero" id="about" ref={heroRef}>
-      <canvas ref={canvasRef} className="hero-canvas"></canvas>
+      <canvas ref={canvasRef} className={`hero-canvas ${showBackground ? 'visible' : ''}`}></canvas>
       
-      <div className="hero-floating-icons">
+      <div className={`hero-floating-icons ${showBackground ? 'visible' : ''}`}>
         <span 
           className="floating-icon icon-1" 
           ref={(el) => (floatingIconRefs.current[0] = el)}
@@ -243,16 +255,16 @@ const Hero = () => {
       </div>
 
       <div className="hero-content">
-        <h1 className="hero-title glitch" data-text={displayText}>
+        <h1 className={`hero-title ${typingComplete ? 'glitch' : ''}`} data-text={displayText}>
           {displayText}
           <span className="typing-cursor">|</span>
         </h1>
-        <p className="hero-subtitle">
+        <p className={`hero-subtitle ${showContent ? 'visible' : ''}`}>
           Where Artificial Intelligence meets the Internet of Things. 
           Building the bridge between intelligent systems and connected devices 
           to shape tomorrow's world.
         </p>
-        <div className="hero-buttons">
+        <div className={`hero-buttons ${showContent ? 'visible' : ''}`}>
           <a href="#join" className="btn btn-primary">
             Join the Network
           </a>
@@ -262,7 +274,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="hero-scroll-indicator">
+      <div className={`hero-scroll-indicator ${showContent ? 'visible' : ''}`}>
         <span>Scroll to explore</span>
         <div className="scroll-arrow"></div>
       </div>

@@ -4,7 +4,7 @@
   background: linear-gradient(
     180deg,
     var(--color-bg) 0%,
-    rgba(0, 245, 212, 0.05) 50%,
+    rgba(0, 168, 150, 0.05) 50%,
     var(--color-bg) 100%
   );
 }
@@ -15,7 +15,7 @@
   left: 50%;
   width: 600px;
   height: 600px;
-  border: 2px solid rgba(0, 245, 212, 0.2);
+  border: 2px solid rgba(0, 168, 150, 0.2);
   border-radius: 50%;
   transform: translate(-50%, -50%);
   animation: ringPulse 4s ease-in-out infinite;
@@ -73,7 +73,7 @@
 }
 
 .input-wrapper:focus-within {
-  border-color: rgba(0, 245, 212, 0.4);
+  border-color: rgba(0, 168, 150, 0.4);
   box-shadow: var(--glow-cyan);
 }
 
