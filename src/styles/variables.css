@@ -1,0 +1,15 @@
+:root {
+  --color-bg:         #050A14;
+  --color-bg-card:    rgba(255, 255, 255, 0.04);
+  --color-cyan:       #00F5D4;
+  --color-violet:     #7B2FFF;
+  --color-text:       #E8EDF5;
+  --color-text-muted: #7A8899;
+  --font-display:     'Orbitron', sans-serif;
+  --font-body:        'Sora', sans-serif;
+  --glow-cyan:        0 0 20px rgba(0, 245, 212, 0.4);
+  --glow-violet:      0 0 20px rgba(123, 47, 255, 0.4);
+  --border-glass:     1px solid rgba(0, 245, 212, 0.15);
+  --radius-card:      16px;
+  --transition-base:  all 0.3s ease;
+}

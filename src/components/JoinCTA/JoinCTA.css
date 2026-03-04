@@ -1,0 +1,156 @@
+.join-cta {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    var(--color-bg) 0%,
+    rgba(0, 245, 212, 0.05) 50%,
+    var(--color-bg) 100%
+  );
+}
+
+.join-glow-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  border: 2px solid rgba(0, 245, 212, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: ringPulse 4s ease-in-out infinite;
+}
+
+.join-glow-ring.ring-2 {
+  width: 800px;
+  height: 800px;
+  border-color: rgba(123, 47, 255, 0.15);
+  animation-delay: 2s;
+}
+
+.join-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.join-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 20px;
+}
+
+.join-title span {
+  color: var(--color-cyan);
+  text-shadow: var(--glow-cyan);
+}
+
+.join-subtitle {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+.join-form {
+  margin-bottom: 20px;
+}
+
+.input-wrapper {
+  display: flex;
+  gap: 0;
+  max-width: 500px;
+  margin: 0 auto;
+  background: var(--color-bg-card);
+  border: var(--border-glass);
+  border-radius: 12px;
+  padding: 6px;
+  transition: var(--transition-base);
+}
+
+.input-wrapper:focus-within {
+  border-color: rgba(0, 245, 212, 0.4);
+  box-shadow: var(--glow-cyan);
+}
+
+.join-input {
+  flex: 1;
+  padding: 14px 20px;
+  font-size: 1rem;
+  color: var(--color-text);
+  background: transparent;
+  border: none;
+}
+
+.join-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.join-input:disabled {
+  opacity: 0.7;
+}
+
+.join-button {
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-bg);
+  background: var(--color-cyan);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition-base);
+  white-space: nowrap;
+}
+
+.join-button:hover:not(:disabled) {
+  box-shadow: var(--glow-cyan);
+  transform: translateY(-1px);
+}
+
+.join-button:disabled {
+  cursor: not-allowed;
+}
+
+.join-button.submitting {
+  background: var(--color-text-muted);
+}
+
+.join-button.submitted {
+  background: #10B981;
+}
+
+.join-note {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 768px) {
+  .join-glow-ring {
+    width: 400px;
+    height: 400px;
+  }
+
+  .join-glow-ring.ring-2 {
+    width: 500px;
+    height: 500px;
+  }
+
+  .input-wrapper {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .join-input {
+    text-align: center;
+  }
+
+  .join-button {
+    width: 100%;
+  }
+}

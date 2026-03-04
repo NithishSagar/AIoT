@@ -1,0 +1,165 @@
+import { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route, useNavigate, useSearchParams } from 'react-router-dom';
+import { SiteContentProvider } from './context/SiteContentContext';
+import useSecretSequence from './hooks/useSecretSequence';
+import Navbar from './components/Navbar/Navbar';
+import Hero from './components/Hero/Hero';
+import Stats from './components/Stats/Stats';
+import FocusAreas from './components/FocusAreas/FocusAreas';
+import AudienceTabs from './components/AudienceTabs/AudienceTabs';
+import Events from './components/Events/Events';
+import Projects from './components/Projects/Projects';
+import Blog from './components/Blog/Blog';
+import JoinCTA from './components/JoinCTA/JoinCTA';
+import Footer from './components/Footer/Footer';
+import AdminApp from './admin/AdminApp';
+import LoginGate from './admin/components/LoginGate/LoginGate';
+import NotFound from './admin/components/NotFound/NotFound';
+import './App.css';
+
+// Main landing page component
+const LandingPage = () => {
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  const [cursorVisible, setCursorVisible] = useState(false);
+  const [cursorHover, setCursorHover] = useState(false);
+  const navigate = useNavigate();
+  
+  // Secret Konami sequence: ↑ ↑ ↓ ↓ ← → ← → B A
+  const secretActivated = useSecretSequence([
+    'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
+    'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
+    'KeyN', 'KeyJ', 'KeyR'
+  ]);
+
+  useEffect(() => {
+    if (secretActivated) {
+      // Redirect to admin with secret token
+      const adminKey = import.meta.env.VITE_ADMIN_KEY || 'aiot_access_2025';
+      navigate(`/admin?key=${adminKey}`);
+    }
+  }, [secretActivated, navigate]);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setCursorPosition({ x: e.clientX, y: e.clientY });
+      setCursorVisible(true);
+    };
+
+    const handleMouseLeave = () => {
+      setCursorVisible(false);
+    };
+
+    const handleMouseEnter = () => {
+      setCursorVisible(true);
+    };
+
+    // Add hover effect for interactive elements
+    const addHoverListeners = () => {
+      const interactiveElements = document.querySelectorAll('a, button, input');
+      
+      interactiveElements.forEach((el) => {
+        el.addEventListener('mouseenter', () => setCursorHover(true));
+        el.addEventListener('mouseleave', () => setCursorHover(false));
+      });
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseleave', handleMouseLeave);
+    document.addEventListener('mouseenter', handleMouseEnter);
+    
+    // Slight delay to ensure DOM is ready
+    setTimeout(addHoverListeners, 100);
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener('mouseenter', handleMouseEnter);
+    };
+  }, []);
+
+  return (
+    <div className="app">
+      {/* Custom Cursor */}
+      <div
+        className={`cursor ${cursorVisible ? 'visible' : ''} ${cursorHover ? 'hover' : ''}`}
+        style={{
+          left: cursorPosition.x,
+          top: cursorPosition.y
+        }}
+      />
+
+      <Navbar />
+      <main>
+        <Hero />
+        <Stats />
+        <FocusAreas />
+        <AudienceTabs />
+        <Events />
+        <Projects />
+        <Blog />
+        <JoinCTA />
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
+// Admin route with authentication
+const AdminRoute = () => {
+  const [searchParams] = useSearchParams();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+  
+  const adminKey = import.meta.env.VITE_ADMIN_KEY || 'aiot_access_2025';
+  const urlKey = searchParams.get('key');
+
+  useEffect(() => {
+    // Check if already authenticated in session
+    const sessionAuth = sessionStorage.getItem('aiot_admin_auth');
+    if (sessionAuth === 'true') {
+      setIsAuthenticated(true);
+      return;
+    }
+
+    // Check URL key
+    if (urlKey === adminKey) {
+      setShowLogin(true);
+    }
+  }, [urlKey, adminKey]);
+
+  const handleLogin = () => {
+    sessionStorage.setItem('aiot_admin_auth', 'true');
+    setIsAuthenticated(true);
+    setShowLogin(false);
+  };
+
+  // No valid key - show 404
+  if (!showLogin && !isAuthenticated) {
+    return <NotFound />;
+  }
+
+  // Valid key but not logged in - show password gate
+  if (showLogin && !isAuthenticated) {
+    return <LoginGate onLogin={handleLogin} />;
+  }
+
+  // Authenticated - show admin panel
+  return <AdminApp />;
+};
+
+// Main App with routing
+const App = () => {
+  return (
+    <SiteContentProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/admin" element={<AdminRoute />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </SiteContentProvider>
+  );
+};
+
+export default App;

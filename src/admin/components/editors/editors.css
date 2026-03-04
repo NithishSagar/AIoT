@@ -1,0 +1,358 @@
+/* Editor Panel Styles */
+
+.editor-panel {
+  max-width: 900px;
+}
+
+.editor-header {
+  margin-bottom: 32px;
+}
+
+.editor-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #E8EDF5;
+  margin: 0 0 8px;
+}
+
+.editor-description {
+  font-size: 0.95rem;
+  color: #7A8899;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.editor-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.editor-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(0, 245, 212, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.editor-card:hover {
+  border-color: rgba(0, 245, 212, 0.2);
+}
+
+.editor-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.editor-card-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #E8EDF5;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-icon {
+  font-size: 1.2rem;
+}
+
+.editor-card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.card-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  font-size: 1rem;
+  color: #7A8899;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.card-action-btn:hover:not(:disabled) {
+  color: #E8EDF5;
+  border-color: rgba(0, 245, 212, 0.3);
+}
+
+.card-action-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.card-action-btn.danger:hover:not(:disabled) {
+  color: #ff4757;
+  border-color: rgba(255, 71, 87, 0.3);
+}
+
+.editor-card-body {
+  padding: 20px;
+}
+
+/* Add Button */
+.add-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 16px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  font-family: 'Sora', sans-serif;
+  color: #00F5D4;
+  background: rgba(0, 245, 212, 0.05);
+  border: 2px dashed rgba(0, 245, 212, 0.3);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-btn:hover {
+  background: rgba(0, 245, 212, 0.1);
+  border-color: #00F5D4;
+}
+
+/* Section divider */
+.editor-section {
+  margin-bottom: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.editor-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.section-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #00F5D4;
+  margin: 0 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-title::before {
+  content: '';
+  width: 4px;
+  height: 20px;
+  background: linear-gradient(135deg, #00F5D4, #7B2FFF);
+  border-radius: 2px;
+}
+
+/* Stat item specific */
+.stat-preview {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  background: rgba(0, 245, 212, 0.05);
+  border-radius: 8px;
+}
+
+.stat-number {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #00F5D4, #7B2FFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-suffix {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.25rem;
+  color: #00F5D4;
+}
+
+/* Event card specific */
+.event-date-preview {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  background: rgba(123, 47, 255, 0.1);
+  border: 1px solid rgba(123, 47, 255, 0.3);
+  border-radius: 8px;
+}
+
+.event-date-preview .date-icon {
+  font-size: 1.25rem;
+}
+
+.event-date-preview .date-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  color: #7B2FFF;
+}
+
+/* Project card specific */
+.project-tech-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.tech-tag {
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  color: #00F5D4;
+  background: rgba(0, 245, 212, 0.1);
+  border: 1px solid rgba(0, 245, 212, 0.3);
+  border-radius: 20px;
+}
+
+/* Blog card specific */
+.blog-meta-preview {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  font-size: 0.85rem;
+  color: #7A8899;
+}
+
+.blog-meta-preview span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Audience tab specific */
+.tab-preview {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  background: rgba(0, 245, 212, 0.1);
+  border: 1px solid rgba(0, 245, 212, 0.3);
+  border-radius: 8px;
+}
+
+.tab-preview .tab-icon {
+  font-size: 1rem;
+}
+
+.tab-preview .tab-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #00F5D4;
+}
+
+/* Grid inputs */
+.input-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.input-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .input-grid-2,
+  .input-grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Hero specific */
+.floating-icons-editor {
+  margin-top: 16px;
+}
+
+.floating-icon-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.floating-icon-preview {
+  font-size: 1.5rem;
+  width: 40px;
+  text-align: center;
+}
+
+.floating-icon-input {
+  flex: 1;
+}
+
+.floating-icon-remove {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  color: #ff4757;
+  background: transparent;
+  border: 1px solid rgba(255, 71, 87, 0.3);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.floating-icon-remove:hover {
+  background: rgba(255, 71, 87, 0.1);
+}
+
+/* Footer links editor */
+.footer-links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.footer-link-item {
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  color: #7A8899;
+}
+
+.empty-state-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.empty-state-text {
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+}
