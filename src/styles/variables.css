@@ -1,15 +1,31 @@
 :root {
-  --color-bg:         #F8F6F3;
-  --color-bg-card:    rgba(0, 0, 0, 0.04);
-  --color-cyan:       #00A896;
-  --color-violet:     #6B21A8;
-  --color-text:       #1A1A2E;
-  --color-text-muted: #5A6675;
-  --font-display:     'Orbitron', sans-serif;
-  --font-body:        'Sora', sans-serif;
-  --glow-cyan:        0 0 20px rgba(0, 168, 150, 0.3);
-  --glow-violet:      0 0 20px rgba(107, 33, 168, 0.3);
-  --border-glass:     1px solid rgba(0, 168, 150, 0.2);
-  --radius-card:      16px;
-  --transition-base:  all 0.3s ease;
+  /* Colors */
+  --color-bg:           #FFFFFF;
+  --color-bg-card:      #F7F8FA;
+  --color-bg-elevated:  #F0F2F5;
+  --color-text:         #111111;
+  --color-text-muted:   #6B7280;
+  --color-accent:       #4F46E5;
+  --color-accent-hover: #3730A3;
+  --color-border:       #E5E7EB;
+
+  /* Legacy aliases for compatibility */
+  --color-cyan:         #4F46E5;
+  --color-violet:       #3730A3;
+
+  /* Typography */
+  --font-display: 'Inter', sans-serif;
+  --font-body:    'Inter', sans-serif;
+  --font-mono:    'Space Mono', monospace;
+
+  /* Shadows (clean shadows instead of glows) */
+  --shadow-card:   0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.06);
+  --shadow-hover:  0 4px 24px rgba(79, 70, 229, 0.15);
+  --glow-cyan:     none;
+  --glow-violet:   none;
+
+  /* Borders */
+  --border-glass:  1px solid #E5E7EB;
+  --radius-card:   12px;
+  --transition-base: all 0.25s ease;
 }

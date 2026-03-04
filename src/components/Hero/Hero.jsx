@@ -9,7 +9,7 @@ const Hero = () => {
   const [typingComplete, setTypingComplete] = useState(false);
   const [showBackground, setShowBackground] = useState(false);
   const [showContent, setShowContent] = useState(false);
-  const fullText = 'Connecting Intelligence to the World';
+  const fullText = 'Make Things Think';
 
   // Store original positions for each icon
   const originalPositions = useRef([]);
@@ -99,7 +99,7 @@ const Hero = () => {
           // Intensify glow based on proximity
           const glowIntensity = 0.3 + (proximityRatio * 0.7);
           const glowSize = 10 + (proximityRatio * 30);
-          icon.style.boxShadow = `0 0 ${glowSize}px rgba(0, 245, 212, ${glowIntensity})`;
+          icon.style.boxShadow = `0 0 ${glowSize}px rgba(79, 70, 229, ${glowIntensity})`;
           icon.style.opacity = 0.3 + (proximityRatio * 0.5);
 
           // Pause float animation
@@ -175,9 +175,9 @@ const Hero = () => {
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(0, 168, 150, 0.6)';
+        ctx.fillStyle = 'rgba(79, 70, 229, 0.6)';
         ctx.fill();
-        ctx.shadowColor = '#00A896';
+        ctx.shadowColor = '#4F46E5';
         ctx.shadowBlur = 10;
       }
     }
@@ -202,7 +202,7 @@ const Hero = () => {
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
             const opacity = (1 - distance / 150) * 0.3;
-            ctx.strokeStyle = `rgba(0, 168, 150, ${opacity})`;
+            ctx.strokeStyle = `rgba(79, 70, 229, ${opacity})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }

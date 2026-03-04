@@ -1,5 +1,5 @@
-.focus-areas {
-  background: var(--color-bg);
+﻿.focus-areas {
+  background: #FFFFFF;
 }
 
 .focus-grid {
@@ -9,10 +9,8 @@
 }
 
 .focus-card {
-  background: var(--color-bg-card);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: var(--border-glass);
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-card);
   padding: 32px;
   text-align: center;
@@ -21,44 +19,22 @@
   overflow: hidden;
 }
 
-.focus-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--color-cyan),
-    transparent
-  );
-  opacity: 0;
-  transition: var(--transition-base);
-}
-
 .focus-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(0, 168, 150, 0.3);
-  box-shadow: var(--glow-cyan);
-}
-
-.focus-card:hover::before {
-  opacity: 1;
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-left: 4px solid var(--color-accent);
 }
 
 .focus-icon {
   display: inline-block;
   font-size: 3rem;
   margin-bottom: 20px;
-  filter: drop-shadow(0 0 10px rgba(0, 168, 150, 0.3));
 }
 
 .focus-title {
   font-family: var(--font-display);
   font-size: 1.25rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--color-text);
   margin-bottom: 12px;
 }

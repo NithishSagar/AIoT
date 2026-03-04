@@ -1,31 +1,7 @@
-.join-cta {
+﻿.join-cta {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(
-    180deg,
-    var(--color-bg) 0%,
-    rgba(0, 168, 150, 0.05) 50%,
-    var(--color-bg) 100%
-  );
-}
-
-.join-glow-ring {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 600px;
-  height: 600px;
-  border: 2px solid rgba(0, 168, 150, 0.2);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  animation: ringPulse 4s ease-in-out infinite;
-}
-
-.join-glow-ring.ring-2 {
-  width: 800px;
-  height: 800px;
-  border-color: rgba(123, 47, 255, 0.15);
-  animation-delay: 2s;
+  background: var(--color-bg-elevated);
 }
 
 .join-content {
@@ -45,8 +21,7 @@
 }
 
 .join-title span {
-  color: var(--color-cyan);
-  text-shadow: var(--glow-cyan);
+  color: var(--color-accent);
 }
 
 .join-subtitle {
@@ -65,16 +40,16 @@
   gap: 0;
   max-width: 500px;
   margin: 0 auto;
-  background: var(--color-bg-card);
-  border: var(--border-glass);
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
   border-radius: 12px;
   padding: 6px;
   transition: var(--transition-base);
 }
 
 .input-wrapper:focus-within {
-  border-color: rgba(0, 168, 150, 0.4);
-  box-shadow: var(--glow-cyan);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
 }
 
 .join-input {
@@ -98,8 +73,8 @@
   padding: 14px 28px;
   font-size: 1rem;
   font-weight: 600;
-  color: var(--color-bg);
-  background: var(--color-cyan);
+  color: #FFFFFF;
+  background: var(--color-accent);
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -108,7 +83,7 @@
 }
 
 .join-button:hover:not(:disabled) {
-  box-shadow: var(--glow-cyan);
+  background: var(--color-accent-hover);
   transform: translateY(-1px);
 }
 
@@ -130,20 +105,10 @@
 }
 
 @media (max-width: 768px) {
-  .join-glow-ring {
-    width: 400px;
-    height: 400px;
-  }
-
-  .join-glow-ring.ring-2 {
-    width: 500px;
-    height: 500px;
-  }
-
   .input-wrapper {
     flex-direction: column;
-    gap: 12px;
-    padding: 12px;
+    gap: 8px;
+    padding: 8px;
   }
 
   .join-input {

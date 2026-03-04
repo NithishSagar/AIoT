@@ -1,10 +1,5 @@
-.audience-tabs {
-  background: linear-gradient(
-    180deg,
-    var(--color-bg) 0%,
-    rgba(123, 47, 255, 0.03) 50%,
-    var(--color-bg) 100%
-  );
+﻿.audience-tabs {
+  background: #FFFFFF;
 }
 
 .tabs-header {
@@ -19,7 +14,7 @@
   background: var(--color-bg-card);
   border-radius: 12px;
   padding: 6px;
-  border: var(--border-glass);
+  border: 1px solid var(--color-border);
 }
 
 .tab-button {
@@ -42,7 +37,7 @@
 }
 
 .tab-button.active {
-  color: var(--color-bg);
+  color: #FFFFFF;
 }
 
 .tab-indicator {
@@ -51,10 +46,9 @@
   left: 6px;
   width: calc(33.333% - 4px);
   height: calc(100% - 12px);
-  background: var(--color-cyan);
+  background: var(--color-accent);
   border-radius: 8px;
   transition: transform 0.3s ease;
-  box-shadow: var(--glow-cyan);
 }
 
 .tab-content {
@@ -87,10 +81,8 @@
 }
 
 .feature-card {
-  background: var(--color-bg-card);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: var(--border-glass);
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-card);
   padding: 32px;
   text-align: center;
@@ -98,8 +90,7 @@
 }
 
 .feature-card:hover {
-  border-color: rgba(123, 47, 255, 0.3);
-  box-shadow: var(--glow-violet);
+  box-shadow: var(--shadow-card);
 }
 
 .feature-icon {
@@ -111,7 +102,7 @@
 .feature-title {
   font-family: var(--font-display);
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--color-text);
   margin-bottom: 12px;
 }
@@ -148,7 +139,6 @@
 
   .features-grid {
     grid-template-columns: 1fr;
-    gap: 16px;
   }
 
   .feature-card:last-child {
