@@ -141,9 +141,10 @@ export default function FocusAreasEditor() {
 
       {deleteTarget !== null && (
         <ConfirmModal
+          isOpen={true}
           title="Delete Focus Area"
           message={`Are you sure you want to delete "${focusAreas[deleteTarget]?.title}"? This action cannot be undone.`}
-          confirmText="Delete"
+          confirmLabel="Delete"
           variant="danger"
           onConfirm={() => deleteItem(deleteTarget)}
           onCancel={() => setDeleteTarget(null)}

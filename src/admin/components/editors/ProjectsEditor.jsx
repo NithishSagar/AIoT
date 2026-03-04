@@ -199,9 +199,10 @@ export default function ProjectsEditor() {
 
       {deleteTarget !== null && (
         <ConfirmModal
+          isOpen={true}
           title="Delete Project"
           message={`Are you sure you want to delete "${projects[deleteTarget]?.title}"?`}
-          confirmText="Delete"
+          confirmLabel="Delete"
           variant="danger"
           onConfirm={() => deleteProject(deleteTarget)}
           onCancel={() => setDeleteTarget(null)}

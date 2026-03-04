@@ -209,9 +209,10 @@ export default function BlogEditor() {
 
       {deleteTarget !== null && (
         <ConfirmModal
+          isOpen={true}
           title="Delete Blog Post"
           message={`Are you sure you want to delete "${posts[deleteTarget]?.title}"?`}
-          confirmText="Delete"
+          confirmLabel="Delete"
           variant="danger"
           onConfirm={() => deletePost(deleteTarget)}
           onCancel={() => setDeleteTarget(null)}

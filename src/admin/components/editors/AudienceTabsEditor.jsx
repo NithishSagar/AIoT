@@ -179,9 +179,10 @@ export default function AudienceTabsEditor() {
 
       {deleteTarget !== null && (
         <ConfirmModal
+          isOpen={true}
           title="Delete Audience Tab"
           message={`Are you sure you want to delete "${audiences[deleteTarget]?.label}"?`}
-          confirmText="Delete"
+          confirmLabel="Delete"
           variant="danger"
           onConfirm={() => deleteAudience(deleteTarget)}
           onCancel={() => setDeleteTarget(null)}

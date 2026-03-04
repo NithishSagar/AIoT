@@ -194,9 +194,10 @@ export default function EventsEditor() {
 
       {deleteTarget !== null && (
         <ConfirmModal
+          isOpen={true}
           title="Delete Event"
           message={`Are you sure you want to delete "${events[deleteTarget]?.title}"?`}
-          confirmText="Delete"
+          confirmLabel="Delete"
           variant="danger"
           onConfirm={() => deleteEvent(deleteTarget)}
           onCancel={() => setDeleteTarget(null)}
