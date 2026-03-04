@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate, useSearchParams } from 'react-router-dom';
 import { SiteContentProvider } from './context/SiteContentContext';
 import useSecretSequence from './hooks/useSecretSequence';
