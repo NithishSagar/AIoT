@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate, useSearchParams } from 'react-router-dom';
 import { SiteContentProvider } from './context/SiteContentContext';
 import useSecretSequence from './hooks/useSecretSequence';
@@ -19,9 +19,6 @@ import './App.css';
 
 // Main landing page component
 const LandingPage = () => {
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
-  const [cursorVisible, setCursorVisible] = useState(false);
-  const [cursorHover, setCursorHover] = useState(false);
   const navigate = useNavigate();
   
   // Secret Konami sequence: ↑ ↑ ↓ ↓ ← → ← → B A
@@ -39,55 +36,8 @@ const LandingPage = () => {
     }
   }, [secretActivated, navigate]);
 
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setCursorPosition({ x: e.clientX, y: e.clientY });
-      setCursorVisible(true);
-    };
-
-    const handleMouseLeave = () => {
-      setCursorVisible(false);
-    };
-
-    const handleMouseEnter = () => {
-      setCursorVisible(true);
-    };
-
-    // Add hover effect for interactive elements
-    const addHoverListeners = () => {
-      const interactiveElements = document.querySelectorAll('a, button, input');
-      
-      interactiveElements.forEach((el) => {
-        el.addEventListener('mouseenter', () => setCursorHover(true));
-        el.addEventListener('mouseleave', () => setCursorHover(false));
-      });
-    };
-
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseleave', handleMouseLeave);
-    document.addEventListener('mouseenter', handleMouseEnter);
-    
-    // Slight delay to ensure DOM is ready
-    setTimeout(addHoverListeners, 100);
-
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseleave', handleMouseLeave);
-      document.removeEventListener('mouseenter', handleMouseEnter);
-    };
-  }, []);
-
   return (
     <div className="app">
-      {/* Custom Cursor */}
-      <div
-        className={`cursor ${cursorVisible ? 'visible' : ''} ${cursorHover ? 'hover' : ''}`}
-        style={{
-          left: cursorPosition.x,
-          top: cursorPosition.y
-        }}
-      />
-
       <Navbar />
       <main>
         <Hero />
