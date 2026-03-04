@@ -16,7 +16,14 @@ export default function EventsEditor() {
 
   const updateEvent = (index, field, value) => {
     const updated = [...events];
-    updated[index] = { ...updated[index], [field]: value };
+    if (field === 'day' || field === 'month') {
+      updated[index] = { 
+        ...updated[index], 
+        date: { ...updated[index].date, [field]: value } 
+      };
+    } else {
+      updated[index] = { ...updated[index], [field]: value };
+    }
     updateSection('events', updated);
     setHasUnsavedChanges(true);
   };
@@ -25,12 +32,10 @@ export default function EventsEditor() {
     const newEvent = {
       id: Date.now(),
       title: 'New Event',
-      date: new Date().toISOString().split('T')[0],
-      time: '10:00 AM - 12:00 PM',
-      location: 'Location TBD',
-      type: 'workshop',
+      date: { day: '01', month: 'JAN' },
+      type: 'Workshop',
       description: 'Event description...',
-      status: 'upcoming'
+      link: '#'
     };
     updateSection('events', [...events, newEvent]);
     setHasUnsavedChanges(true);
@@ -53,31 +58,28 @@ export default function EventsEditor() {
     setHasUnsavedChanges(true);
   };
 
-  const formatDatePreview = (dateStr) => {
-    if (!dateStr) return 'No date set';
-    const date = new Date(dateStr);
-    return date.toLocaleDateString('en-US', { 
-      weekday: 'short', 
-      month: 'short', 
-      day: 'numeric', 
-      year: 'numeric' 
-    });
-  };
-
   const typeOptions = [
-    { value: 'workshop', label: 'Workshop' },
-    { value: 'hackathon', label: 'Hackathon' },
-    { value: 'seminar', label: 'Seminar' },
-    { value: 'meetup', label: 'Meetup' },
-    { value: 'competition', label: 'Competition' },
-    { value: 'webinar', label: 'Webinar' }
+    { value: 'Workshop', label: 'Workshop' },
+    { value: 'Hackathon', label: 'Hackathon' },
+    { value: 'Seminar', label: 'Seminar' },
+    { value: 'Meetup', label: 'Meetup' },
+    { value: 'Competition', label: 'Competition' },
+    { value: 'Webinar', label: 'Webinar' }
   ];
 
-  const statusOptions = [
-    { value: 'upcoming', label: 'Upcoming' },
-    { value: 'ongoing', label: 'Ongoing' },
-    { value: 'completed', label: 'Completed' },
-    { value: 'cancelled', label: 'Cancelled' }
+  const monthOptions = [
+    { value: 'JAN', label: 'JAN' },
+    { value: 'FEB', label: 'FEB' },
+    { value: 'MAR', label: 'MAR' },
+    { value: 'APR', label: 'APR' },
+    { value: 'MAY', label: 'MAY' },
+    { value: 'JUN', label: 'JUN' },
+    { value: 'JUL', label: 'JUL' },
+    { value: 'AUG', label: 'AUG' },
+    { value: 'SEP', label: 'SEP' },
+    { value: 'OCT', label: 'OCT' },
+    { value: 'NOV', label: 'NOV' },
+    { value: 'DEC', label: 'DEC' }
   ];
 
   return (
@@ -126,7 +128,7 @@ export default function EventsEditor() {
             <div className="editor-card-body">
               <div className="event-date-preview">
                 <span className="date-icon">📅</span>
-                <span className="date-text">{formatDatePreview(event.date)}</span>
+                <span className="date-text">{event.date?.day || '--'} {event.date?.month || '---'}</span>
               </div>
 
               <TextInput
@@ -139,41 +141,26 @@ export default function EventsEditor() {
 
               <div className="input-grid-2">
                 <TextInput
-                  label="Date"
-                  type="date"
-                  value={event.date || ''}
-                  onChange={(value) => updateEvent(index, 'date', value)}
+                  label="Day"
+                  value={event.date?.day || ''}
+                  onChange={(value) => updateEvent(index, 'day', value)}
+                  placeholder="15"
                   required
                 />
-                <TextInput
-                  label="Time"
-                  value={event.time || ''}
-                  onChange={(value) => updateEvent(index, 'time', value)}
-                  placeholder="10:00 AM - 12:00 PM"
+                <SelectInput
+                  label="Month"
+                  value={event.date?.month || 'JAN'}
+                  onChange={(value) => updateEvent(index, 'month', value)}
+                  options={monthOptions}
                 />
               </div>
 
-              <TextInput
-                label="Location"
-                value={event.location || ''}
-                onChange={(value) => updateEvent(index, 'location', value)}
-                placeholder="Venue or Online"
+              <SelectInput
+                label="Event Type"
+                value={event.type || 'Workshop'}
+                onChange={(value) => updateEvent(index, 'type', value)}
+                options={typeOptions}
               />
-
-              <div className="input-grid-2">
-                <SelectInput
-                  label="Event Type"
-                  value={event.type || 'workshop'}
-                  onChange={(value) => updateEvent(index, 'type', value)}
-                  options={typeOptions}
-                />
-                <SelectInput
-                  label="Status"
-                  value={event.status || 'upcoming'}
-                  onChange={(value) => updateEvent(index, 'status', value)}
-                  options={statusOptions}
-                />
-              </div>
 
               <TextArea
                 label="Description"
@@ -181,6 +168,13 @@ export default function EventsEditor() {
                 onChange={(value) => updateEvent(index, 'description', value)}
                 placeholder="Brief description of the event..."
                 rows={3}
+              />
+
+              <TextInput
+                label="Registration Link"
+                value={event.link || ''}
+                onChange={(value) => updateEvent(index, 'link', value)}
+                placeholder="https://forms.google.com/..."
               />
             </div>
           </div>

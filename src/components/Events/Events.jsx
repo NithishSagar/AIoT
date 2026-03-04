@@ -1,4 +1,4 @@
-import { events } from '../../data/events';
+import { useSiteContent } from '../../context/SiteContentContext';
 import useIntersectionObserver from '../../hooks/useIntersectionObserver';
 import './Events.css';
 
@@ -42,6 +42,9 @@ const EventCard = ({ event, index }) => {
 };
 
 const Events = () => {
+  const { content } = useSiteContent();
+  const events = content.events || [];
+
   return (
     <section className="events section" id="events">
       <div className="container">
