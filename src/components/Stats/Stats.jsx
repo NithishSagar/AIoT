@@ -1,12 +1,6 @@
+import { useSiteContent } from '../../context/SiteContentContext';
 import useCountUp from '../../hooks/useCountUp';
 import './Stats.css';
-
-const statsData = [
-  { id: 1, value: 500, suffix: '+', label: 'Members' },
-  { id: 2, value: 30, suffix: '+', label: 'Projects' },
-  { id: 3, value: 12, suffix: '', label: 'Events' },
-  { id: 4, value: 8, suffix: '', label: 'Partners' }
-];
 
 const StatItem = ({ value, suffix, label }) => {
   const { count, elementRef } = useCountUp(value, 2000);
@@ -23,10 +17,13 @@ const StatItem = ({ value, suffix, label }) => {
 };
 
 const Stats = () => {
+  const { content } = useSiteContent();
+  const stats = content.stats || [];
+
   return (
     <section className="stats">
       <div className="stats-container">
-        {statsData.map((stat, index) => (
+        {stats.map((stat) => (
           <StatItem
             key={stat.id}
             value={stat.value}
