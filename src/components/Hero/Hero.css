@@ -48,7 +48,7 @@
 
 .typing-cursor {
   color: var(--color-accent);
-  animation: typing 0.8s infinite;
+  animation: typing 0.5s infinite;
   margin-left: 4px;
 }
 

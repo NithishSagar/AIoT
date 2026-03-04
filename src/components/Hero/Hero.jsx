@@ -9,7 +9,7 @@ const Hero = () => {
   const [typingComplete, setTypingComplete] = useState(false);
   const [showBackground, setShowBackground] = useState(false);
   const [showContent, setShowContent] = useState(false);
-  const fullText = 'Make Things Think';
+  const fullText = 'Make Things Think...';
 
   // Store original positions for each icon
   const originalPositions = useRef([]);
