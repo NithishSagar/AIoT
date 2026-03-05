@@ -116,13 +116,13 @@ const defaultContent = {
 };
 
 const STORAGE_KEY = 'aiot_site_content';
-const FIRESTORE_DOC = doc(db, 'site', 'content');
+const FIRESTORE_DOC = db ? doc(db, 'site', 'content') : null;
 
 const SiteContentContext = createContext(null);
 
 export const SiteContentProvider = ({ children }) => {
   // Loading and connection states
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!!FIRESTORE_DOC);
   const [error, setError] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
 
@@ -145,6 +145,12 @@ export const SiteContentProvider = ({ children }) => {
 
   // Subscribe to Firestore real-time updates
   useEffect(() => {
+    if (!FIRESTORE_DOC) {
+      // Firebase is not configured — use defaults
+      setLoading(false);
+      return;
+    }
+
     const unsubscribe = onSnapshot(
       FIRESTORE_DOC,
       (snapshot) => {
@@ -194,7 +200,9 @@ export const SiteContentProvider = ({ children }) => {
   // Save working content to Firestore
   const saveContent = useCallback(async () => {
     try {
-      await setDoc(FIRESTORE_DOC, content);
+      if (FIRESTORE_DOC) {
+        await setDoc(FIRESTORE_DOC, content);
+      }
       setSavedContent(content);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(content));
       return { success: true };
@@ -220,7 +228,10 @@ export const SiteContentProvider = ({ children }) => {
   // Reset a section to defaults and save to Firestore
   const resetSection = useCallback(async (section) => {
     try {
-      await updateDoc(FIRESTORE_DOC, { [section]: defaultContent[section] });
+      if (FIRESTORE_DOC) {
+        await updateDoc(FIRESTORE_DOC, { [section]: defaultContent[section] });
+      }
+      setContent((prev) => ({ ...prev, [section]: defaultContent[section] }));
       return { success: true };
     } catch (e) {
       console.error('Failed to reset section:', e);
@@ -231,7 +242,12 @@ export const SiteContentProvider = ({ children }) => {
   // Reset all content to defaults and save to Firestore
   const resetAll = useCallback(async () => {
     try {
-      await setDoc(FIRESTORE_DOC, defaultContent);
+      if (FIRESTORE_DOC) {
+        await setDoc(FIRESTORE_DOC, defaultContent);
+      }
+      setContent(defaultContent);
+      setSavedContent(defaultContent);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultContent));
       return { success: true };
     } catch (e) {
       console.error('Failed to reset all content:', e);
@@ -256,7 +272,12 @@ export const SiteContentProvider = ({ children }) => {
     try {
       const parsed = typeof json === 'string' ? JSON.parse(json) : json;
       const merged = { ...defaultContent, ...parsed };
-      await setDoc(FIRESTORE_DOC, merged);
+      if (FIRESTORE_DOC) {
+        await setDoc(FIRESTORE_DOC, merged);
+      }
+      setContent(merged);
+      setSavedContent(merged);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
       return { success: true };
     } catch (e) {
       console.error('Failed to import JSON:', e);

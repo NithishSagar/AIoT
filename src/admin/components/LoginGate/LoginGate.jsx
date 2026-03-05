@@ -13,6 +13,11 @@ const LoginGate = ({ onLogin }) => {
 
   // Check auth state on mount
   useEffect(() => {
+    if (!auth) {
+      setLoading(false);
+      return;
+    }
+
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setLoading(false);
       if (user) {
@@ -78,7 +83,9 @@ const LoginGate = ({ onLogin }) => {
   // Export logout function for use elsewhere
   LoginGate.logout = async () => {
     try {
-      await signOut(auth);
+      if (auth) {
+        await signOut(auth);
+      }
       sessionStorage.removeItem('admin_auth');
       window.location.href = '/';
     } catch (err) {
