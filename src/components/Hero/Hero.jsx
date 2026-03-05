@@ -146,6 +146,8 @@ const Hero = () => {
     const ctx = canvas.getContext('2d');
     let animationFrameId;
     let particles = [];
+    let orbs = [];
+    let time = 0;
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
@@ -159,9 +161,12 @@ const Hero = () => {
       constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.radius = Math.random() * 2 + 1;
+        this.vx = (Math.random() - 0.5) * 0.8;
+        this.vy = (Math.random() - 0.5) * 0.8;
+        this.radius = Math.random() * 3 + 1.5;
+        this.baseOpacity = Math.random() * 0.4 + 0.4;
+        this.pulseSpeed = Math.random() * 0.02 + 0.01;
+        this.pulseOffset = Math.random() * Math.PI * 2;
       }
 
       update() {
@@ -173,20 +178,137 @@ const Hero = () => {
       }
 
       draw() {
+        const pulse = Math.sin(time * this.pulseSpeed + this.pulseOffset) * 0.3 + 0.7;
+        const opacity = this.baseOpacity * pulse;
+        
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(79, 70, 229, 0.6)';
+        ctx.arc(this.x, this.y, this.radius * pulse, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(79, 70, 229, ${opacity})`;
         ctx.fill();
+        
+        // Glow effect
         ctx.shadowColor = '#4F46E5';
-        ctx.shadowBlur = 10;
+        ctx.shadowBlur = 15;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius * 0.5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(99, 102, 241, ${opacity * 0.8})`;
+        ctx.fill();
+        ctx.shadowBlur = 0;
       }
     }
 
+    class Orb {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.radius = Math.random() * 80 + 40;
+        this.vx = (Math.random() - 0.5) * 0.3;
+        this.vy = (Math.random() - 0.5) * 0.3;
+        this.pulseSpeed = Math.random() * 0.01 + 0.005;
+        this.pulseOffset = Math.random() * Math.PI * 2;
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        if (this.x < -this.radius) this.x = canvas.width + this.radius;
+        if (this.x > canvas.width + this.radius) this.x = -this.radius;
+        if (this.y < -this.radius) this.y = canvas.height + this.radius;
+        if (this.y > canvas.height + this.radius) this.y = -this.radius;
+      }
+
+      draw() {
+        const pulse = Math.sin(time * this.pulseSpeed + this.pulseOffset) * 0.5 + 0.5;
+        
+        // Outer ring
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius * (0.8 + pulse * 0.2), 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(79, 70, 229, ${0.1 + pulse * 0.1})`;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        
+        // Inner gradient
+        const gradient = ctx.createRadialGradient(
+          this.x, this.y, 0,
+          this.x, this.y, this.radius
+        );
+        gradient.addColorStop(0, `rgba(99, 102, 241, ${0.15 * pulse})`);
+        gradient.addColorStop(0.5, `rgba(79, 70, 229, ${0.05 * pulse})`);
+        gradient.addColorStop(1, 'rgba(79, 70, 229, 0)');
+        
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = gradient;
+        ctx.fill();
+      }
+    }
+
+    const drawGrid = () => {
+      const gridSize = 60;
+      const gridOpacity = 0.04 + Math.sin(time * 0.005) * 0.02;
+      
+      ctx.strokeStyle = `rgba(79, 70, 229, ${gridOpacity})`;
+      ctx.lineWidth = 1;
+      
+      // Vertical lines
+      for (let x = 0; x < canvas.width; x += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvas.height);
+        ctx.stroke();
+      }
+      
+      // Horizontal lines
+      for (let y = 0; y < canvas.height; y += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(canvas.width, y);
+        ctx.stroke();
+      }
+    };
+
+    const drawHexagons = () => {
+      const hexRadius = 30;
+      const spacing = 100;
+      const hexOpacity = 0.06 + Math.sin(time * 0.008) * 0.03;
+      
+      ctx.strokeStyle = `rgba(79, 70, 229, ${hexOpacity})`;
+      ctx.lineWidth = 1;
+      
+      for (let x = -hexRadius; x < canvas.width + hexRadius; x += spacing * 1.5) {
+        for (let y = -hexRadius; y < canvas.height + hexRadius; y += spacing * 0.866) {
+          const offsetX = (Math.floor(y / (spacing * 0.866)) % 2) * (spacing * 0.75);
+          drawHexagon(x + offsetX, y, hexRadius);
+        }
+      }
+    };
+    
+    const drawHexagon = (cx, cy, r) => {
+      ctx.beginPath();
+      for (let i = 0; i < 6; i++) {
+        const angle = (Math.PI / 3) * i - Math.PI / 6;
+        const x = cx + r * Math.cos(angle);
+        const y = cy + r * Math.sin(angle);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+      ctx.stroke();
+    };
+
     const initParticles = () => {
-      const particleCount = Math.floor((canvas.width * canvas.height) / 15000);
+      const particleCount = Math.floor((canvas.width * canvas.height) / 8000);
       particles = [];
       for (let i = 0; i < particleCount; i++) {
         particles.push(new Particle());
+      }
+      
+      // Create floating orbs
+      const orbCount = 5;
+      orbs = [];
+      for (let i = 0; i < orbCount; i++) {
+        orbs.push(new Orb());
       }
     };
 
@@ -197,13 +319,13 @@ const Hero = () => {
           const dy = particles[i].y - particles[j].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 150) {
+          if (distance < 180) {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            const opacity = (1 - distance / 150) * 0.3;
+            const opacity = (1 - distance / 180) * 0.5;
             ctx.strokeStyle = `rgba(79, 70, 229, ${opacity})`;
-            ctx.lineWidth = 0.5;
+            ctx.lineWidth = 1;
             ctx.stroke();
           }
         }
@@ -211,7 +333,17 @@ const Hero = () => {
     };
 
     const animate = () => {
+      time++;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw background elements
+      drawHexagons();
+      
+      // Draw orbs behind particles
+      orbs.forEach((orb) => {
+        orb.update();
+        orb.draw();
+      });
 
       particles.forEach((particle) => {
         particle.update();
@@ -252,6 +384,22 @@ const Hero = () => {
           className="floating-icon icon-4" 
           ref={(el) => (floatingIconRefs.current[3] = el)}
         >⚡</span>
+        <span 
+          className="floating-icon icon-5" 
+          ref={(el) => (floatingIconRefs.current[4] = el)}
+        >🔗</span>
+        <span 
+          className="floating-icon icon-6" 
+          ref={(el) => (floatingIconRefs.current[5] = el)}
+        >🌐</span>
+        <span 
+          className="floating-icon icon-7" 
+          ref={(el) => (floatingIconRefs.current[6] = el)}
+        >🤖</span>
+        <span 
+          className="floating-icon icon-8" 
+          ref={(el) => (floatingIconRefs.current[7] = el)}
+        >📊</span>
       </div>
 
       <div className="hero-content">
