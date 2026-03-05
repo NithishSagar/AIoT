@@ -30,7 +30,7 @@ const JoinCTA = () => {
       }, 3000);
     } catch (err) {
       console.error('Failed to save subscriber:', err);
-      // Still show success to user — the email can be retried
+      // Show success to user to avoid a confusing error on a non-critical action
       setIsSubmitted(true);
       setEmail('');
       setTimeout(() => {

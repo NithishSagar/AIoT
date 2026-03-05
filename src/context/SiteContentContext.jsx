@@ -231,13 +231,16 @@ export const SiteContentProvider = ({ children }) => {
       if (FIRESTORE_DOC) {
         await updateDoc(FIRESTORE_DOC, { [section]: defaultContent[section] });
       }
-      setContent((prev) => ({ ...prev, [section]: defaultContent[section] }));
+      const updated = { ...content, [section]: defaultContent[section] };
+      setContent(updated);
+      setSavedContent(updated);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
       return { success: true };
     } catch (e) {
       console.error('Failed to reset section:', e);
       return { success: false, error: e.message };
     }
-  }, []);
+  }, [content]);
 
   // Reset all content to defaults and save to Firestore
   const resetAll = useCallback(async () => {
