@@ -2,8 +2,8 @@
   width: 260px;
   min-width: 260px;
   height: 100vh;
-  background: rgba(5, 10, 20, 0.98);
-  border-right: 1px solid rgba(0, 245, 212, 0.1);
+  background: #FFFFFF;
+  border-right: 1px solid #E5E7EB;
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -11,15 +11,16 @@
   top: 0;
   z-index: 100;
   transition: all 0.3s ease;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
 }
 
 .sidebar-header {
   padding: 24px 20px;
-  border-bottom: 1px solid rgba(0, 245, 212, 0.1);
+  border-bottom: 1px solid #E5E7EB;
 }
 
 .sidebar-logo {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
   display: flex;
@@ -27,12 +28,11 @@
 }
 
 .sidebar-logo .logo-text {
-  color: #E8EDF5;
+  color: #1F2937;
 }
 
 .sidebar-logo .logo-accent {
-  color: #00F5D4;
-  text-shadow: 0 0 20px rgba(0, 245, 212, 0.4);
+  color: #4F46E5;
 }
 
 .sidebar-nav {
@@ -49,7 +49,7 @@
   display: block;
   font-size: 0.7rem;
   font-weight: 600;
-  color: #7A8899;
+  color: #6B7280;
   text-transform: uppercase;
   letter-spacing: 2px;
   padding: 8px 12px;
@@ -63,8 +63,8 @@
   gap: 12px;
   padding: 12px 16px;
   font-size: 0.95rem;
-  font-family: 'Sora', sans-serif;
-  color: #7A8899;
+  font-family: 'Inter', sans-serif;
+  color: #6B7280;
   background: transparent;
   border: none;
   border-radius: 8px;
@@ -75,13 +75,13 @@
 }
 
 .nav-item:hover {
-  color: #E8EDF5;
-  background: rgba(0, 245, 212, 0.05);
+  color: #1F2937;
+  background: #F3F4F6;
 }
 
 .nav-item.active {
-  color: #00F5D4;
-  background: rgba(0, 245, 212, 0.1);
+  color: #4F46E5;
+  background: rgba(79, 70, 229, 0.1);
 }
 
 .nav-item.active::before {
@@ -92,9 +92,8 @@
   transform: translateY(-50%);
   width: 3px;
   height: 24px;
-  background: #00F5D4;
+  background: #4F46E5;
   border-radius: 0 2px 2px 0;
-  box-shadow: 0 0 10px rgba(0, 245, 212, 0.5);
 }
 
 .nav-icon {
@@ -107,7 +106,7 @@
 
 .sidebar-actions {
   padding: 16px 12px;
-  border-top: 1px solid rgba(0, 245, 212, 0.1);
+  border-top: 1px solid #E5E7EB;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -119,8 +118,8 @@
   gap: 12px;
   padding: 10px 16px;
   font-size: 0.85rem;
-  font-family: 'Sora', sans-serif;
-  color: #7A8899;
+  font-family: 'Inter', sans-serif;
+  color: #6B7280;
   background: transparent;
   border: none;
   border-radius: 8px;
@@ -130,18 +129,18 @@
 }
 
 .action-btn:hover {
-  color: #E8EDF5;
-  background: rgba(255, 255, 255, 0.05);
+  color: #1F2937;
+  background: #F3F4F6;
 }
 
 .action-btn.warning:hover {
-  color: #ffa502;
-  background: rgba(255, 165, 2, 0.1);
+  color: #D97706;
+  background: rgba(217, 119, 6, 0.1);
 }
 
 .action-btn.danger:hover {
-  color: #ff4757;
-  background: rgba(255, 71, 87, 0.1);
+  color: #DC2626;
+  background: rgba(220, 38, 38, 0.1);
 }
 
 .action-icon {

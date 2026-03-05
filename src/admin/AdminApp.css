@@ -1,25 +1,11 @@
-/* Admin App Layout */
+/* Admin App Layout - Light Theme */
 
 .admin-layout {
   display: flex;
   min-height: 100vh;
-  background: #050a14;
-  color: #E8EDF5;
+  background: #F5F7FA;
+  color: #1F2937;
   transition: padding-right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Override global body styles for admin */
-.admin-layout,
-.admin-layout * {
-  color: inherit;
-}
-
-.admin-layout a {
-  color: #00F5D4;
-}
-
-.admin-layout button {
-  color: inherit;
 }
 
 .admin-layout.preview-open {
@@ -46,16 +32,16 @@
 }
 
 .admin-content::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.02);
+  background: #F3F4F6;
 }
 
 .admin-content::-webkit-scrollbar-thumb {
-  background: rgba(0, 168, 150, 0.2);
+  background: #D1D5DB;
   border-radius: 4px;
 }
 
 .admin-content::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 168, 150, 0.3);
+  background: #9CA3AF;
 }
 
 /* Responsive */

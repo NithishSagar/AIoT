@@ -1,7 +1,7 @@
 .admin-navbar {
   height: 64px;
-  background: rgba(5, 10, 20, 0.95);
-  border-bottom: 1px solid rgba(0, 245, 212, 0.1);
+  background: #FFFFFF;
+  border-bottom: 1px solid #E5E7EB;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -9,8 +9,6 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
 }
 
 .navbar-left {
@@ -20,16 +18,16 @@
 }
 
 .navbar-title {
-  font-family: 'Sora', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 1.1rem;
   font-weight: 400;
-  color: #7A8899;
+  color: #6B7280;
   margin: 0;
 }
 
 .navbar-title span {
   font-weight: 600;
-  color: #E8EDF5;
+  color: #1F2937;
 }
 
 .unsaved-indicator {
@@ -37,16 +35,16 @@
   align-items: center;
   gap: 8px;
   font-size: 0.8rem;
-  color: #ffa502;
+  color: #D97706;
   padding: 4px 12px;
-  background: rgba(255, 165, 2, 0.1);
+  background: rgba(217, 119, 6, 0.1);
   border-radius: 20px;
 }
 
 .unsaved-dot {
   width: 8px;
   height: 8px;
-  background: #ffa502;
+  background: #D97706;
   border-radius: 50%;
   animation: pulse 1.5s infinite;
 }
@@ -66,7 +64,7 @@
   padding: 8px 16px;
   font-size: 0.9rem;
   font-weight: 500;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Inter', sans-serif;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -76,34 +74,35 @@
 }
 
 .navbar-btn.primary {
-  color: #050A14;
-  background: #00F5D4;
+  color: #FFFFFF;
+  background: #4F46E5;
   border: none;
-  box-shadow: 0 0 15px rgba(0, 245, 212, 0.3);
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
 }
 
 .navbar-btn.primary:hover:not(:disabled) {
-  box-shadow: 0 0 25px rgba(0, 245, 212, 0.5);
+  background: #4338CA;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
   transform: translateY(-1px);
 }
 
 .navbar-btn.primary:disabled {
-  background: #7A8899;
+  background: #9CA3AF;
   box-shadow: none;
   cursor: not-allowed;
   opacity: 0.5;
 }
 
 .navbar-btn.ghost {
-  color: #7A8899;
+  color: #6B7280;
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid #E5E7EB;
 }
 
 .navbar-btn.ghost:hover:not(:disabled) {
-  color: #E8EDF5;
-  border-color: rgba(0, 245, 212, 0.3);
-  background: rgba(0, 245, 212, 0.05);
+  color: #1F2937;
+  border-color: #D1D5DB;
+  background: #F9FAFB;
 }
 
 .navbar-btn.ghost:disabled {
@@ -112,15 +111,15 @@
 }
 
 .navbar-btn.toggle-preview {
-  color: #7A8899;
+  color: #6B7280;
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid #E5E7EB;
 }
 
 .navbar-btn.toggle-preview:hover {
-  color: #E8EDF5;
-  border-color: rgba(123, 47, 255, 0.3);
-  background: rgba(123, 47, 255, 0.05);
+  color: #4F46E5;
+  border-color: rgba(79, 70, 229, 0.3);
+  background: rgba(79, 70, 229, 0.05);
 }
 
 @media (max-width: 768px) {

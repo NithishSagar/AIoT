@@ -9,16 +9,16 @@
 }
 
 .editor-title {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
-  color: #E8EDF5;
+  color: #1F2937;
   margin: 0 0 8px;
 }
 
 .editor-description {
   font-size: 0.95rem;
-  color: #7A8899;
+  color: #6B7280;
   margin: 0;
   line-height: 1.6;
 }
@@ -31,15 +31,17 @@
 }
 
 .editor-card {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(0, 245, 212, 0.1);
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
   border-radius: 12px;
   overflow: hidden;
   transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .editor-card:hover {
-  border-color: rgba(0, 245, 212, 0.2);
+  border-color: #D1D5DB;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .editor-card-header {
@@ -47,15 +49,15 @@
   justify-content: space-between;
   align-items: center;
   padding: 16px 20px;
-  background: rgba(0, 0, 0, 0.2);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: #F9FAFB;
+  border-bottom: 1px solid #E5E7EB;
 }
 
 .editor-card-title {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.95rem;
   font-weight: 600;
-  color: #E8EDF5;
+  color: #1F2937;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -77,17 +79,18 @@
   width: 32px;
   height: 32px;
   font-size: 1rem;
-  color: #7A8899;
+  color: #6B7280;
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid #E5E7EB;
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .card-action-btn:hover:not(:disabled) {
-  color: #E8EDF5;
-  border-color: rgba(0, 245, 212, 0.3);
+  color: #1F2937;
+  border-color: #D1D5DB;
+  background: #F3F4F6;
 }
 
 .card-action-btn:disabled {
@@ -96,8 +99,9 @@
 }
 
 .card-action-btn.danger:hover:not(:disabled) {
-  color: #ff4757;
-  border-color: rgba(255, 71, 87, 0.3);
+  color: #DC2626;
+  border-color: rgba(220, 38, 38, 0.3);
+  background: rgba(220, 38, 38, 0.05);
 }
 
 .editor-card-body {
@@ -114,18 +118,18 @@
   padding: 16px;
   font-size: 0.95rem;
   font-weight: 500;
-  font-family: 'Sora', sans-serif;
-  color: #00F5D4;
-  background: rgba(0, 245, 212, 0.05);
-  border: 2px dashed rgba(0, 245, 212, 0.3);
+  font-family: 'Inter', sans-serif;
+  color: #4F46E5;
+  background: rgba(79, 70, 229, 0.05);
+  border: 2px dashed rgba(79, 70, 229, 0.3);
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .add-btn:hover {
-  background: rgba(0, 245, 212, 0.1);
-  border-color: #00F5D4;
+  background: rgba(79, 70, 229, 0.1);
+  border-color: #4F46E5;
 }
 
 /* Section divider */
@@ -142,10 +146,10 @@
 }
 
 .section-title {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
-  color: #00F5D4;
+  color: #4F46E5;
   margin: 0 0 16px;
   display: flex;
   align-items: center;
@@ -156,7 +160,7 @@
   content: '';
   width: 4px;
   height: 20px;
-  background: linear-gradient(135deg, #00F5D4, #7B2FFF);
+  background: #4F46E5;
   border-radius: 2px;
 }
 
@@ -167,24 +171,21 @@
   gap: 4px;
   margin-bottom: 16px;
   padding: 12px 16px;
-  background: rgba(0, 245, 212, 0.05);
+  background: rgba(79, 70, 229, 0.05);
   border-radius: 8px;
 }
 
 .stat-number {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 2rem;
   font-weight: 700;
-  background: linear-gradient(135deg, #00F5D4, #7B2FFF);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #4F46E5;
 }
 
 .stat-suffix {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 1.25rem;
-  color: #00F5D4;
+  color: #4F46E5;
 }
 
 /* Event card specific */
@@ -194,8 +195,8 @@
   gap: 10px;
   margin-bottom: 16px;
   padding: 10px 14px;
-  background: rgba(123, 47, 255, 0.1);
-  border: 1px solid rgba(123, 47, 255, 0.3);
+  background: rgba(79, 70, 229, 0.1);
+  border: 1px solid rgba(79, 70, 229, 0.2);
   border-radius: 8px;
 }
 
@@ -204,9 +205,10 @@
 }
 
 .event-date-preview .date-text {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.9rem;
-  color: #7B2FFF;
+  color: #4F46E5;
+  font-weight: 600;
 }
 
 /* Project card specific */
@@ -220,9 +222,9 @@
 .tech-tag {
   padding: 4px 10px;
   font-size: 0.8rem;
-  color: #00F5D4;
-  background: rgba(0, 245, 212, 0.1);
-  border: 1px solid rgba(0, 245, 212, 0.3);
+  color: #4F46E5;
+  background: rgba(79, 70, 229, 0.1);
+  border: 1px solid rgba(79, 70, 229, 0.2);
   border-radius: 20px;
 }
 
@@ -233,7 +235,7 @@
   gap: 16px;
   margin-bottom: 16px;
   font-size: 0.85rem;
-  color: #7A8899;
+  color: #6B7280;
 }
 
 .blog-meta-preview span {
@@ -249,8 +251,8 @@
   gap: 8px;
   padding: 8px 16px;
   margin-bottom: 16px;
-  background: rgba(0, 245, 212, 0.1);
-  border: 1px solid rgba(0, 245, 212, 0.3);
+  background: rgba(79, 70, 229, 0.1);
+  border: 1px solid rgba(79, 70, 229, 0.2);
   border-radius: 8px;
 }
 
@@ -261,7 +263,7 @@
 .tab-preview .tab-label {
   font-size: 0.9rem;
   font-weight: 500;
-  color: #00F5D4;
+  color: #4F46E5;
 }
 
 /* Grid inputs */
@@ -294,8 +296,8 @@
   align-items: center;
   gap: 12px;
   padding: 12px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: #F9FAFB;
+  border: 1px solid #E5E7EB;
   border-radius: 8px;
   margin-bottom: 8px;
 }
@@ -313,16 +315,16 @@
 .floating-icon-remove {
   padding: 6px 12px;
   font-size: 0.85rem;
-  color: #ff4757;
+  color: #DC2626;
   background: transparent;
-  border: 1px solid rgba(255, 71, 87, 0.3);
+  border: 1px solid rgba(220, 38, 38, 0.3);
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .floating-icon-remove:hover {
-  background: rgba(255, 71, 87, 0.1);
+  background: rgba(220, 38, 38, 0.1);
 }
 
 /* Footer links editor */
@@ -334,8 +336,8 @@
 
 .footer-link-item {
   padding: 12px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: #F9FAFB;
+  border: 1px solid #E5E7EB;
   border-radius: 8px;
 }
 
@@ -343,7 +345,7 @@
 .empty-state {
   text-align: center;
   padding: 48px 24px;
-  color: #7A8899;
+  color: #6B7280;
 }
 
 .empty-state-icon {
