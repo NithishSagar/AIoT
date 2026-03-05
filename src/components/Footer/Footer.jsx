@@ -35,34 +35,38 @@ const Footer = () => {
 
   return (
     <footer className="footer">
-      <div className="container">
-        <div className="footer-grid">
-          {/* Brand Column */}
-          <div className="footer-brand">
-            <a href="#" className="footer-logo">
-              <img src="/logo.jpeg" alt="YORK AIoT" className="footer-logo-image" />
-              <span className="logo-text">YORK</span>
-              <span className="logo-accent">AIoT</span>
-            </a>
-            <p className="footer-tagline">
-              {footerData.tagline || 'Connecting intelligence to the world through AI and IoT innovation.'}
-            </p>
-            <div className="footer-social">
-              {socialLinks.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.url}
-                  className="social-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.platform}
-                >
-                  {socialIcons[social.platform] || socialIcons.GitHub}
-                </a>
-              ))}
-            </div>
+      <div className="footer-container">
+        {/* Top Section: Brand */}
+        <div className="footer-brand-section">
+          <a href="#" className="footer-logo">
+            <img src="/logo.jpeg" alt="YORK AIoT" className="footer-logo-image" />
+            <span className="logo-text">YORK</span>
+            <span className="logo-accent">AIoT</span>
+          </a>
+          <p className="footer-tagline">
+            {footerData.tagline || 'Connecting intelligence to the world through AI and IoT innovation.'}
+          </p>
+          <div className="footer-social">
+            {socialLinks.map((social, index) => (
+              <a
+                key={index}
+                href={social.url}
+                className="social-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.platform}
+              >
+                {socialIcons[social.platform] || socialIcons.GitHub}
+              </a>
+            ))}
           </div>
+        </div>
 
+        {/* Divider */}
+        <div className="footer-divider"></div>
+
+        {/* Links Section: 3 Columns Side by Side */}
+        <div className="footer-links-grid">
           {/* Quick Links Column */}
           <div className="footer-column">
             <h4 className="footer-heading">Quick Links</h4>
@@ -70,6 +74,7 @@ const Footer = () => {
               {quickLinks.map((link, index) => (
                 <li key={index}>
                   <a href={link.href} className="footer-link">
+                    <span className="link-indicator"></span>
                     {link.label}
                   </a>
                 </li>
@@ -84,6 +89,7 @@ const Footer = () => {
               {focusAreaLinks.map((link, index) => (
                 <li key={index}>
                   <a href={link.href} className="footer-link">
+                    <span className="link-indicator"></span>
                     {link.label}
                   </a>
                 </li>
@@ -94,22 +100,35 @@ const Footer = () => {
           {/* Contact Column */}
           <div className="footer-column">
             <h4 className="footer-heading">Contact</h4>
-            <ul className="footer-links">
+            <ul className="footer-links footer-contact">
               <li>
+                <svg className="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
                 <a href="mailto:hello@yorkaiot.org" className="footer-link">
                   hello@yorkaiot.org
                 </a>
               </li>
               <li>
+                <svg className="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
                 <span className="footer-text">University Tech Hub</span>
               </li>
               <li>
+                <svg className="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="9" y1="3" x2="9" y2="21"/>
+                </svg>
                 <span className="footer-text">Building 42, Room 101</span>
               </li>
             </ul>
           </div>
         </div>
 
+        {/* Bottom Section */}
         <div className="footer-bottom">
           <p className="footer-copyright">
             {footerData.copyright || `© ${currentYear} YORK AIoT. All rights reserved.`}

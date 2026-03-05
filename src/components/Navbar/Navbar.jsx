@@ -58,7 +58,7 @@ const Navbar = () => {
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="navbar-container">
         <a href="#" className="navbar-logo">
-          <img src="/Logo1.png" alt="Logo" className="logo-image" />
+          <img src="/logo12.png" alt="Logo" className="logo-image" />
         </a>
 
         <div className={`navbar-links ${isMobileMenuOpen ? 'open' : ''}`}>
