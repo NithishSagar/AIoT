@@ -29,6 +29,8 @@ const JoinCTA = () => {
     <section className="join-cta section" id="join">
       <div className="join-glow-ring"></div>
       <div className="join-glow-ring ring-2"></div>
+      <div className="join-glow-ring ring-3"></div>
+      <div className="join-center-glow"></div>
       
       <div className="container">
         <div className="join-content">
