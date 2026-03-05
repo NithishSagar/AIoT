@@ -4,6 +4,53 @@
   background: var(--color-bg-elevated);
 }
 
+.join-glow-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(79, 70, 229, 0.15);
+  border-radius: 50%;
+  animation: rotateRing 20s linear infinite;
+  pointer-events: none;
+}
+
+.join-glow-ring::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background: var(--color-accent);
+  border-radius: 50%;
+  box-shadow: 0 0 20px var(--color-accent), 0 0 40px var(--color-accent);
+}
+
+.join-glow-ring.ring-2 {
+  width: 800px;
+  height: 800px;
+  border-color: rgba(79, 70, 229, 0.08);
+  animation-duration: 30s;
+  animation-direction: reverse;
+}
+
+.join-glow-ring.ring-2::before {
+  background: rgba(99, 102, 241, 0.8);
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.6);
+}
+
+@keyframes rotateRing {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
 .join-content {
   position: relative;
   z-index: 1;
