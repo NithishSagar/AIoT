@@ -1,4 +1,6 @@
 import { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { db } from '../firebase/firebaseConfig';
+import { doc, onSnapshot, setDoc, updateDoc } from 'firebase/firestore';
 
 // Default content matching the data/ files
 const defaultContent = {
@@ -114,22 +116,26 @@ const defaultContent = {
 };
 
 const STORAGE_KEY = 'aiot_site_content';
+const FIRESTORE_DOC = doc(db, 'site', 'content');
 
 const SiteContentContext = createContext(null);
 
 export const SiteContentProvider = ({ children }) => {
-  // Saved content (persisted to localStorage)
+  // Loading and connection states
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [isConnected, setIsConnected] = useState(false);
+
+  // Saved content (from Firestore)
   const [savedContent, setSavedContent] = useState(() => {
-    // Load from localStorage on mount
+    // Load cached content from localStorage for instant display
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
-        const parsed = JSON.parse(stored);
-        // Merge with defaults to handle new fields
-        return { ...defaultContent, ...parsed };
+        return { ...defaultContent, ...JSON.parse(stored) };
       }
     } catch (e) {
-      console.error('Failed to load site content from localStorage:', e);
+      console.error('Failed to load cached content:', e);
     }
     return defaultContent;
   });
@@ -137,22 +143,64 @@ export const SiteContentProvider = ({ children }) => {
   // Working content (for admin editing)
   const [content, setContent] = useState(savedContent);
 
-  // Sync working content with saved content on load
+  // Subscribe to Firestore real-time updates
   useEffect(() => {
-    setContent(savedContent);
+    const unsubscribe = onSnapshot(
+      FIRESTORE_DOC,
+      (snapshot) => {
+        setIsConnected(true);
+        setLoading(false);
+        setError(null);
+
+        if (snapshot.exists()) {
+          const data = snapshot.data();
+          const merged = { ...defaultContent, ...data };
+          setSavedContent(merged);
+          setContent(merged);
+          // Cache in localStorage
+          try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+          } catch (e) {
+            console.error('Failed to cache content:', e);
+          }
+        } else {
+          // Document doesn't exist - create with defaults (first-time setup)
+          setDoc(FIRESTORE_DOC, defaultContent)
+            .then(() => {
+              setSavedContent(defaultContent);
+              setContent(defaultContent);
+              localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultContent));
+            })
+            .catch((err) => {
+              console.error('Failed to initialize Firestore document:', err);
+              setError('Failed to initialize content');
+            });
+        }
+      },
+      (err) => {
+        console.error('Firestore connection error:', err);
+        setIsConnected(false);
+        setError('Connection lost — changes will sync when reconnected');
+        setLoading(false);
+      }
+    );
+
+    return () => unsubscribe();
   }, []);
 
   // Alias for backward compatibility
   const siteContent = content;
-  const setSiteContent = setContent;
 
-  // Save working content to localStorage
-  const saveContent = useCallback(() => {
+  // Save working content to Firestore
+  const saveContent = useCallback(async () => {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(content));
+      await setDoc(FIRESTORE_DOC, content);
       setSavedContent(content);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(content));
+      return { success: true };
     } catch (e) {
-      console.error('Failed to save site content to localStorage:', e);
+      console.error('Failed to save content to Firestore:', e);
+      return { success: false, error: e.message };
     }
   }, [content]);
 
@@ -161,6 +209,7 @@ export const SiteContentProvider = ({ children }) => {
     setContent(savedContent);
   }, [savedContent]);
 
+  // Update a single section locally (call saveContent to persist)
   const updateSection = useCallback((section, newData) => {
     setContent((prev) => ({
       ...prev,
@@ -168,15 +217,26 @@ export const SiteContentProvider = ({ children }) => {
     }));
   }, []);
 
-  const resetSection = useCallback((section) => {
-    setContent((prev) => ({
-      ...prev,
-      [section]: defaultContent[section]
-    }));
+  // Reset a section to defaults and save to Firestore
+  const resetSection = useCallback(async (section) => {
+    try {
+      await updateDoc(FIRESTORE_DOC, { [section]: defaultContent[section] });
+      return { success: true };
+    } catch (e) {
+      console.error('Failed to reset section:', e);
+      return { success: false, error: e.message };
+    }
   }, []);
 
-  const resetAll = useCallback(() => {
-    setContent(defaultContent);
+  // Reset all content to defaults and save to Firestore
+  const resetAll = useCallback(async () => {
+    try {
+      await setDoc(FIRESTORE_DOC, defaultContent);
+      return { success: true };
+    } catch (e) {
+      console.error('Failed to reset all content:', e);
+      return { success: false, error: e.message };
+    }
   }, []);
 
   const exportJSON = useCallback(() => {
@@ -192,11 +252,11 @@ export const SiteContentProvider = ({ children }) => {
     URL.revokeObjectURL(url);
   }, [content]);
 
-  const importJSON = useCallback((json) => {
+  const importJSON = useCallback(async (json) => {
     try {
       const parsed = typeof json === 'string' ? JSON.parse(json) : json;
-      // Merge with defaults to ensure all fields exist
-      setContent({ ...defaultContent, ...parsed });
+      const merged = { ...defaultContent, ...parsed };
+      await setDoc(FIRESTORE_DOC, merged);
       return { success: true };
     } catch (e) {
       console.error('Failed to import JSON:', e);
@@ -218,7 +278,10 @@ export const SiteContentProvider = ({ children }) => {
         importJSON,
         saveContent,
         discardChanges,
-        getDefaults
+        getDefaults,
+        loading,
+        error,
+        isConnected
       }}
     >
       {children}

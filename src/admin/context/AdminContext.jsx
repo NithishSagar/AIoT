@@ -1,4 +1,6 @@
 import { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { auth } from '../../firebase/firebaseConfig';
+import { signOut } from 'firebase/auth';
 
 const AdminContext = createContext(null);
 
@@ -30,19 +32,20 @@ export const AdminProvider = ({ children }) => {
     return () => window.removeEventListener('beforeunload', handleBeforeUnload);
   }, [hasUnsavedChanges]);
 
-  const login = useCallback((password) => {
-    const expectedPassword = import.meta.env.VITE_ADMIN_PASSWORD || 'admin123';
-    if (password === expectedPassword) {
-      setIsAuthenticated(true);
-      sessionStorage.setItem('admin_auth', 'true');
-      // Strip the ?key= param from URL
-      window.history.replaceState({}, '', '/admin');
-      return true;
-    }
-    return false;
+  const login = useCallback(() => {
+    setIsAuthenticated(true);
+    sessionStorage.setItem('admin_auth', 'true');
+    // Strip the ?key= param from URL
+    window.history.replaceState({}, '', '/admin');
+    return true;
   }, []);
 
-  const logout = useCallback(() => {
+  const logout = useCallback(async () => {
+    try {
+      await signOut(auth);
+    } catch (err) {
+      console.error('Firebase signOut error:', err);
+    }
     setIsAuthenticated(false);
     sessionStorage.removeItem('admin_auth');
     setHasUnsavedChanges(false);
