@@ -3,15 +3,21 @@ import { createContext, useContext, useState, useEffect, useCallback } from 'rea
 // Default content matching the data/ files
 const defaultContent = {
   hero: {
-    headline: 'Connecting Intelligence to the World',
+    headline: 'Make Things Think!',
     subheadline: 'Where Artificial Intelligence meets the Internet of Things. Building the bridge between intelligent systems and connected devices to shape tomorrow\'s world.',
-    primaryCTA: { label: 'Join the Network', href: '#join' },
-    secondaryCTA: { label: 'Explore Projects', href: '#projects' },
-    floatingBadges: [
-      { id: 1, icon: '🧠', label: 'Brain', enabled: true },
-      { id: 2, icon: '📡', label: 'Wifi', enabled: true },
-      { id: 3, icon: '💻', label: 'CPU', enabled: true },
-      { id: 4, icon: '⚡', label: 'Energy', enabled: true }
+    buttons: [
+      { id: 1, label: 'Join the Network', href: '#join', style: 'primary' },
+      { id: 2, label: 'Explore Projects', href: '#projects', style: 'ghost' }
+    ],
+    floatingIcons: [
+      { id: 1, icon: '🧠', enabled: true },
+      { id: 2, icon: '📡', enabled: true },
+      { id: 3, icon: '💻', enabled: true },
+      { id: 4, icon: '⚡', enabled: true },
+      { id: 5, icon: '🔗', enabled: true },
+      { id: 6, icon: '🌐', enabled: true },
+      { id: 7, icon: '🤖', enabled: true },
+      { id: 8, icon: '📊', enabled: true }
     ]
   },
   stats: [
@@ -34,10 +40,20 @@ const defaultContent = {
     { id: 3, date: { day: '05', month: 'APR' }, title: 'AIoT Innovation Hackathon', type: 'Hackathon', description: '48-hour hackathon to build innovative AIoT solutions. Prizes worth $5,000 for winners!', link: '#' }
   ],
   projects: [
-    { id: 1, category: 'AIoT', title: 'Smart Campus Monitoring System', description: 'An integrated system using AI-powered sensors to monitor energy usage, air quality, and occupancy across campus buildings.', techStack: ['Python', 'TensorFlow', 'Raspberry Pi', 'MQTT'], link: '#' },
-    { id: 2, category: 'AI', title: 'Predictive Maintenance Engine', description: 'Machine learning model that predicts equipment failures before they occur, reducing downtime by 40%.', techStack: ['PyTorch', 'FastAPI', 'Docker', 'PostgreSQL'], link: '#' },
-    { id: 3, category: 'IoT', title: 'Connected Greenhouse Network', description: 'Automated greenhouse management system with real-time monitoring and climate control optimization.', techStack: ['Arduino', 'Node.js', 'InfluxDB', 'Grafana'], link: '#' }
+    { id: 1, category: 'AIoT', title: 'Smart Campus Monitoring System', description: 'An integrated system using AI-powered sensors to monitor energy usage, air quality, and occupancy across campus buildings.', techStack: ['Python', 'TensorFlow', 'Raspberry Pi', 'MQTT'], link: '#', status: 'live' },
+    { id: 2, category: 'AI', title: 'Predictive Maintenance Engine', description: 'Machine learning model that predicts equipment failures before they occur, reducing downtime by 40%.', techStack: ['PyTorch', 'FastAPI', 'Docker', 'PostgreSQL'], link: '#', status: 'completed' },
+    { id: 3, category: 'IoT', title: 'Connected Greenhouse Network', description: 'Automated greenhouse management system with real-time monitoring and climate control optimization.', techStack: ['Arduino', 'Node.js', 'InfluxDB', 'Grafana'], link: '#', status: 'live' }
   ],
+  navbar: {
+    links: [
+      { id: 1, label: 'About', href: '#about' },
+      { id: 2, label: 'AIoT?', href: '#focus-areas' },
+      { id: 3, label: 'Events', href: '#events' },
+      { id: 4, label: 'Projects', href: '#projects' },
+      { id: 5, label: 'Blog', href: '#blog' },
+      { id: 6, label: 'Join Us', href: '#join' }
+    ]
+  },
   audienceTabs: {
     students: {
       id: 'students',

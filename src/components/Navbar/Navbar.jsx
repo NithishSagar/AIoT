@@ -1,16 +1,10 @@
 import { useState, useEffect } from 'react';
+import { useSiteContent } from '../../context/SiteContentContext';
 import './Navbar.css';
 
-const navLinks = [
-  { id: 'about', label: 'About', href: '#about' },
-  { id: 'focus', label: 'AIoT?', href: '#focus-areas' },
-  { id: 'events', label: 'Events', href: '#events' },
-  { id: 'projects', label: 'Projects', href: '#projects' },
-  { id: 'blog', label: 'Blog', href: '#blog' },
-  { id: 'join', label: 'Join Us', href: '#join' }
-];
-
 const Navbar = () => {
+  const { content } = useSiteContent();
+  const navLinks = content.navbar?.links || [];
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState('');

@@ -1,4 +1,4 @@
-import { projects } from '../../data/projects';
+import { useSiteContent } from '../../context/SiteContentContext';
 import useIntersectionObserver from '../../hooks/useIntersectionObserver';
 import './Projects.css';
 
@@ -27,6 +27,11 @@ const ProjectCard = ({ project, index }) => {
         <span className={`project-category ${getCategoryClass(project.category)}`}>
           {project.category}
         </span>
+        {project.status && (
+          <span className={`project-status status-${project.status}`}>
+            {project.status === 'live' ? '🟢 Live' : '✅ Completed'}
+          </span>
+        )}
       </div>
       <h3 className="project-title">{project.title}</h3>
       <p className="project-description">{project.description}</p>
@@ -45,6 +50,9 @@ const ProjectCard = ({ project, index }) => {
 };
 
 const Projects = () => {
+  const { content } = useSiteContent();
+  const projects = content.projects || [];
+  
   return (
     <section className="projects section" id="projects">
       <div className="container">

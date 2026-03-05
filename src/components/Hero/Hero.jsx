@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
+import { useSiteContent } from '../../context/SiteContentContext';
 import './Hero.css';
 
 const Hero = () => {
+  const { content } = useSiteContent();
+  const heroData = content.hero || {};
   const canvasRef = useRef(null);
   const heroRef = useRef(null);
   const floatingIconRefs = useRef([]);
@@ -9,7 +12,7 @@ const Hero = () => {
   const [typingComplete, setTypingComplete] = useState(false);
   const [showBackground, setShowBackground] = useState(false);
   const [showContent, setShowContent] = useState(false);
-  const fullText = 'Make Things Think!';
+  const fullText = heroData.headline || 'Make Things Think!';
 
   // Store original positions for each icon
   const originalPositions = useRef([]);
@@ -368,38 +371,13 @@ const Hero = () => {
       <canvas ref={canvasRef} className={`hero-canvas ${showBackground ? 'visible' : ''}`}></canvas>
       
       <div className={`hero-floating-icons ${showBackground ? 'visible' : ''}`}>
-        <span 
-          className="floating-icon icon-1" 
-          ref={(el) => (floatingIconRefs.current[0] = el)}
-        >🧠</span>
-        <span 
-          className="floating-icon icon-2" 
-          ref={(el) => (floatingIconRefs.current[1] = el)}
-        >📡</span>
-        <span 
-          className="floating-icon icon-3" 
-          ref={(el) => (floatingIconRefs.current[2] = el)}
-        >💻</span>
-        <span 
-          className="floating-icon icon-4" 
-          ref={(el) => (floatingIconRefs.current[3] = el)}
-        >⚡</span>
-        <span 
-          className="floating-icon icon-5" 
-          ref={(el) => (floatingIconRefs.current[4] = el)}
-        >🔗</span>
-        <span 
-          className="floating-icon icon-6" 
-          ref={(el) => (floatingIconRefs.current[5] = el)}
-        >🌐</span>
-        <span 
-          className="floating-icon icon-7" 
-          ref={(el) => (floatingIconRefs.current[6] = el)}
-        >🤖</span>
-        <span 
-          className="floating-icon icon-8" 
-          ref={(el) => (floatingIconRefs.current[7] = el)}
-        >📊</span>
+        {(heroData.floatingIcons || []).filter(icon => icon.enabled !== false).map((icon, index) => (
+          <span 
+            key={icon.id}
+            className={`floating-icon icon-${index + 1}`} 
+            ref={(el) => (floatingIconRefs.current[index] = el)}
+          >{icon.icon}</span>
+        ))}
       </div>
 
       <div className="hero-content">
@@ -408,17 +386,18 @@ const Hero = () => {
           <span className="typing-cursor">|</span>
         </h1>
         <p className={`hero-subtitle ${showContent ? 'visible' : ''}`}>
-          Where Artificial Intelligence meets the Internet of Things. 
-          Building the bridge between intelligent systems and connected devices 
-          to shape tomorrow's world.
+          {heroData.subheadline || 'Where Artificial Intelligence meets the Internet of Things. Building the bridge between intelligent systems and connected devices to shape tomorrow\'s world.'}
         </p>
         <div className={`hero-buttons ${showContent ? 'visible' : ''}`}>
-          <a href="#join" className="btn btn-primary">
-            Join the Network
-          </a>
-          <a href="#projects" className="btn btn-ghost">
-            Explore Projects
-          </a>
+          {(heroData.buttons || []).map((button) => (
+            <a 
+              key={button.id} 
+              href={button.href} 
+              className={`btn btn-${button.style || 'primary'}`}
+            >
+              {button.label}
+            </a>
+          ))}
         </div>
       </div>
 

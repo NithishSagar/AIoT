@@ -3,6 +3,7 @@ import { AdminProvider, useAdmin } from './context/AdminContext';
 import Sidebar from './components/Sidebar/Sidebar';
 import AdminNavbar from './components/AdminNavbar/AdminNavbar';
 import PreviewPanel from './components/PreviewPanel/PreviewPanel';
+import NavbarEditor from './components/editors/NavbarEditor';
 import HeroEditor from './components/editors/HeroEditor';
 import StatsEditor from './components/editors/StatsEditor';
 import FocusAreasEditor from './components/editors/FocusAreasEditor';
@@ -15,6 +16,7 @@ import { useSiteContent } from '../context/SiteContentContext';
 import './AdminApp.css';
 
 const sections = [
+  { id: 'navbar', label: 'Navigation', icon: '🧭', component: NavbarEditor },
   { id: 'hero', label: 'Hero', icon: '🏠', component: HeroEditor },
   { id: 'stats', label: 'Statistics', icon: '📊', component: StatsEditor },
   { id: 'focusAreas', label: 'AIoT?', icon: '🎯', component: FocusAreasEditor },
@@ -26,7 +28,7 @@ const sections = [
 ];
 
 function AdminContent() {
-  const [activeSection, setActiveSection] = useState('hero');
+  const [activeSection, setActiveSection] = useState('navbar');
   const [previewOpen, setPreviewOpen] = useState(false);
   const { hasUnsavedChanges, setHasUnsavedChanges } = useAdmin();
   const { saveContent, discardChanges } = useSiteContent();

@@ -29,7 +29,7 @@ export default function ProjectsEditor() {
       description: 'Project description...',
       tech: ['React', 'Node.js'],
       category: 'iot',
-      status: 'ongoing',
+      status: 'live',
       team: 3,
       githubUrl: '',
       demoUrl: ''
@@ -64,10 +64,8 @@ export default function ProjectsEditor() {
   ];
 
   const statusOptions = [
-    { value: 'planning', label: 'Planning' },
-    { value: 'ongoing', label: 'Ongoing' },
-    { value: 'completed', label: 'Completed' },
-    { value: 'paused', label: 'Paused' }
+    { value: 'live', label: 'Live' },
+    { value: 'completed', label: 'Completed' }
   ];
 
   return (
@@ -154,7 +152,7 @@ export default function ProjectsEditor() {
                 />
                 <SelectInput
                   label="Status"
-                  value={project.status || 'ongoing'}
+                  value={project.status || 'live'}
                   onChange={(value) => updateProject(index, 'status', value)}
                   options={statusOptions}
                 />

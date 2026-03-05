@@ -1,4 +1,4 @@
-import { blogPosts } from '../../data/blog';
+import { useSiteContent } from '../../context/SiteContentContext';
 import useIntersectionObserver from '../../hooks/useIntersectionObserver';
 import './Blog.css';
 
@@ -48,6 +48,9 @@ const BlogCard = ({ post, index }) => {
 };
 
 const Blog = () => {
+  const { content } = useSiteContent();
+  const blogPosts = content.blog || [];
+
   return (
     <section className="blog section" id="blog">
       <div className="container">

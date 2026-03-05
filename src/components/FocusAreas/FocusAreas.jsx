@@ -1,4 +1,4 @@
-import { focusAreas } from '../../data/focusAreas';
+import { useSiteContent } from '../../context/SiteContentContext';
 import useIntersectionObserver from '../../hooks/useIntersectionObserver';
 import './FocusAreas.css';
 
@@ -18,6 +18,9 @@ const FocusAreaCard = ({ area, index }) => {
 };
 
 const FocusAreas = () => {
+  const { content } = useSiteContent();
+  const focusAreas = content.focusAreas || [];
+
   return (
     <section className="focus-areas section" id="focus-areas">
       <div className="container">
