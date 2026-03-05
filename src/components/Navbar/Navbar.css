@@ -25,26 +25,15 @@
 }
 
 .navbar-logo {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 700;
   display: flex;
   align-items: center;
-  gap: 8px;
   text-decoration: none;
 }
 
 .logo-image {
-  height: 36px;
+  height: 44px;
   width: auto;
-}
-
-.logo-text {
-  color: var(--color-text);
-}
-
-.logo-accent {
-  color: var(--color-accent);
+  border-radius: 8px;
 }
 
 .navbar-links {
