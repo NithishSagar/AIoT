@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { db } from '../../firebase/firebaseConfig';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import './JoinCTA.css';
 
 const JoinCTA = () => {
@@ -6,23 +8,37 @@ const JoinCTA = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email) return;
 
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+
+    try {
+      if (db) {
+        await addDoc(collection(db, 'subscribers'), {
+          email,
+          subscribedAt: serverTimestamp(),
+        });
+      }
       setIsSubmitted(true);
       setEmail('');
-      
+
       // Reset after 3 seconds
       setTimeout(() => {
         setIsSubmitted(false);
       }, 3000);
-    }, 1000);
+    } catch (err) {
+      console.error('Failed to save subscriber:', err);
+      // Show success to user to avoid a confusing error on a non-critical action
+      setIsSubmitted(true);
+      setEmail('');
+      setTimeout(() => {
+        setIsSubmitted(false);
+      }, 3000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

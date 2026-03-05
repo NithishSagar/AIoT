@@ -11,6 +11,22 @@ const firebaseConfig = {
   appId:             import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
-export const auth = getAuth(app);
+let app = null;
+let db = null;
+let auth = null;
+
+const isConfigValid = firebaseConfig.apiKey && firebaseConfig.projectId;
+
+if (isConfigValid) {
+  try {
+    app = initializeApp(firebaseConfig);
+    db = getFirestore(app);
+    auth = getAuth(app);
+  } catch (err) {
+    console.error('Firebase initialization failed:', err);
+  }
+} else {
+  console.warn('Firebase config is missing — running in offline mode with default content.');
+}
+
+export { db, auth };

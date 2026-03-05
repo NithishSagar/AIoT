@@ -42,7 +42,9 @@ export const AdminProvider = ({ children }) => {
 
   const logout = useCallback(async () => {
     try {
-      await signOut(auth);
+      if (auth) {
+        await signOut(auth);
+      }
     } catch (err) {
       console.error('Firebase signOut error:', err);
     }
