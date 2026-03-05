@@ -52,9 +52,16 @@ const defaultContent = {
       { id: 2, label: 'AIoT?', href: '#focus-areas' },
       { id: 3, label: 'Events', href: '#events' },
       { id: 4, label: 'Projects', href: '#projects' },
-      { id: 5, label: 'Blog', href: '#blog' },
-      { id: 6, label: 'Join Us', href: '#join' }
-    ]
+      { id: 5, label: 'Blog', href: '#blog' }
+    ],
+    joinButton: {
+      label: 'Join Us',
+      href: '#join',
+      dropdownItems: [
+        { id: 1, label: 'Not a Student?', href: '#not-student' },
+        { id: 2, label: 'Partner with Us', href: '#partner' }
+      ]
+    }
   },
   audienceTabs: {
     students: {
