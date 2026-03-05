@@ -4,7 +4,22 @@
   display: flex;
   min-height: 100vh;
   background: #050a14;
+  color: #E8EDF5;
   transition: padding-right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Override global body styles for admin */
+.admin-layout,
+.admin-layout * {
+  color: inherit;
+}
+
+.admin-layout a {
+  color: #00F5D4;
+}
+
+.admin-layout button {
+  color: inherit;
 }
 
 .admin-layout.preview-open {
