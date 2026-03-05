@@ -15,6 +15,7 @@ import Footer from './components/Footer/Footer';
 import AdminApp from './admin/AdminApp';
 import LoginGate from './admin/components/LoginGate/LoginGate';
 import NotFound from './admin/components/NotFound/NotFound';
+import { Analytics } from '@vercel/analytics/react';
 import './App.css';
 
 // Main landing page component
@@ -108,6 +109,7 @@ const App = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
+      <Analytics />
     </SiteContentProvider>
   );
 };
